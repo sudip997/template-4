@@ -14,7 +14,10 @@ const TRUST_POINTS = [
 /** Layered lighting behind the hero: violet/blue glows plus a faint grain patch. */
 function HeroBackground() {
   return (
-    <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 -z-10"
+    >
       <div className="hero-glow absolute inset-0" />
       <div className="bg-noise absolute inset-x-0 top-[32%] h-[640px] opacity-[0.06] [mask-image:radial-gradient(ellipse_at_center,#000_0%,transparent_68%)]" />
     </div>
@@ -59,8 +62,8 @@ export function Hero() {
             style={{ animationDelay: "160ms" }}
           >
             Vantora unifies planning, publishing and attribution in one
-            workspace, so your team ships faster and sees exactly which
-            channels drive revenue.
+            workspace, so your team ships faster and sees exactly which channels
+            drive revenue.
           </p>
 
           <div
