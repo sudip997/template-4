@@ -12,8 +12,7 @@ This is Template #4 in a collection. It must have its own recognizable visual id
 - **Mood:** Confident, refined, focused, sophisticated.
 - **Core palette:** Midnight black, elevated dark surfaces, electric violet, electric blue, soft white, muted gray.
 - **Typography:** Sora for headings; Inter for body text and UI.
-- **Visual signature:** Restrained violet/blue lighting, layered product visuals, crisp typography, and subtle depth.
-- **Avoid:** noisy backgrounds and unnecessary animation.
+- **Visual signature:** violet/blue lighting/gradient, layered product visuals, crisp typography, and subtle depth.
 
 The result should look like a credible, high-quality commercial SaaS template; not a generic AI-generated landing page.
 
@@ -26,7 +25,7 @@ The result should look like a credible, high-quality commercial SaaS template; n
 - Use the existing component structure, aliases, and naming conventions.
 - Use `next/font/google` for Sora and Inter if fonts are not already configured. Avoid loading the same font multiple times in separate components.
 - Use the project's existing UI components where practical; use shadcn/ui when it fits the design.
-- Use Motion (`motion/react`) only if it is already installed or can be added consistently with the project's setup. Do not silently introduce a new animation library.
+- Use Motion (`motion/react`). Do not silently introduce a new animation library.
 - Prefer Server Components by default. Add `"use client"` only when browser APIs, state, event handlers, or client-side animation genuinely require it.
 - Do not modify unrelated files, dependencies, configuration, or existing sections unnecessarily.
 - Do not replace working project architecture just to implement one section.
@@ -47,14 +46,13 @@ Use these colors consistently. Prefer centralized CSS variables/design tokens in
 
 ### Color rules
 
-- Keep the overall page dark, but create hierarchy with several subtle surface levels.
+- Keep the overall page dark, but create hierarchy with several surface levels.
 - Use soft white for headings and muted gray for secondary text.
 - Use violet as the main accent and blue as a supporting accent.
-- Gradients should be used whenever appropriate, such as a CTA, a highlighted phrase, a hero visual,...
-- A subtle violet-to-blue gradient is acceptable.
+- Use Gradients whenever appropriate, such as a CTA, a highlighted phrase, a hero visual,...
+- A violet-to-blue gradient is acceptable.
 - Keep borders low contrast. Borders should support layout, not dominate it.
 - Maintain accessible text contrast. Do not use low-contrast gray text for important content.
-- Treat the approximate **70% dark surfaces / 20% neutral typography and supporting UI / 10% accent colors** as a visual guideline, not a rigid formula.
 - Do not introduce extra accent colors without a clear reason.
 
 ## 4. Typography
@@ -100,11 +98,10 @@ Use the existing font setup if it is already correct. Otherwise, configure the f
 
 ### Buttons
 
-- Primary buttons may use restrained violet-to-blue gradient or violet fill.
+- Primary buttons may use violet-to-blue gradient or violet fill.
 - Secondary buttons should use a transparent/dark fill with a subtle border.
 - Use clear labels, visible keyboard focus, and appropriate disabled states.
 - Add modest hover feedback, such as a small brightness/shadow change.
-- Do not make every button glow unnecessarily.
 
 ### Cards and panels
 
@@ -126,35 +123,23 @@ Use the existing font setup if it is already correct. Otherwise, configure the f
 
 ## 7. Backgrounds and Visual Effects
 
-Use effects to support the content, not to decorate every available space.
-
 Preferred effects:
 
-- A subtle radial violet or blue glow behind a key hero visual.
+- A radial violet or blue glow/gradient behind a key hero visual.
 - A noise texture in selected areas only.
 - Layered product previews, floating interface panels, or a carefully designed abstract visual.
 - Soft shadows and gentle surface transitions.
 - Fine background details that do not reduce text readability.
 
-Avoid:
-
-- Strong neon glows everywhere.
-- Animated gradients on every card or section.
-- Thick or bright borders around all containers.
-- Multiple competing background patterns.
-- Excessive blur/glassmorphism.
-- Decorative effects that make the page feel busy or reduce performance.
-
 ## 8. Animation and Interaction
 
-- Use subtle, purposeful motion.
+- Use purposeful motion.
 - Prefer smooth transitions for hover, focus, reveal, and menu interactions.
 - Animate only elements that benefit from motion.
 - Keep motion consistent across the page.
 - Avoid large, distracting movement and excessive parallax.
 - Respect `prefers-reduced-motion`.
 - Ensure animation does not cause layout shifts, or harm mobile performance.
-- Avoid adding a dependency solely for a minor effect if CSS can do the job well.
 - Any interactive control must actually work.
 
 ## 9. Hero Section Principles
@@ -166,7 +151,7 @@ When creating the Hero:
 3. Keep the supporting description concise and readable.
 4. Provide one clear primary CTA and an optional secondary CTA.
 5. Add one distinctive visual centerpiece, such as a video interface, abstract orb, or floating interface.
-6. Use restrained lighting to draw attention to the centerpiece.
+6. Use lighting/gradient to draw attention to the centerpiece.
 7. Make the first screen feel balanced and intentional on desktop and mobile.
 
 Do not combine every trend in one hero. Choose one main visual idea and execute it well.
@@ -196,7 +181,7 @@ Keep the design varied but coherent. For example, features may use a product-led
 - Avoid duplicated markup and unnecessarily complex abstractions.
 - Do not add packages without explaining why they are needed.
 - Do not use placeholder links such as `href="#"` for controls that appear functional.
-- Use semantic elements, accessible labels, visible focus states, and appropriate ARIA attributes where needed.
+- Use accessible labels, visible focus states, and appropriate ARIA attributes where needed.
 - Use optimized Next.js image handling when applicable and available.
 - Check responsive behavior and likely edge cases before considering the section complete.
 - If a build, lint, or type-check command is available, run the relevant check when practical and fix issues introduced by your changes.
@@ -207,7 +192,7 @@ When I request a section such as Navbar, Hero, Features, Pricing, Testimonials, 
 
 1. Inspect the existing project files and current design before coding.
 2. Identify the relevant existing components, styles, font setup, and dependencies.
-3. Build the requested section to a high visual standard, production-ready while following this design system.
+3. Build the requested section to a high visual standard, beautiful, attractive, production-ready while following this design system.
 4. Reuse existing project conventions and shared components where appropriate.
 5. Make the section responsive and accessible.
 6. Verify that interactive elements work and that the code is consistent with the installed framework versions.
@@ -226,8 +211,8 @@ Before finishing any section, verify:
 - [ ] Spacing, borders, radii, and buttons feel consistent.
 - [ ] The layout works on mobile, tablet, and desktop.
 - [ ] Interactive elements are functional and accessible.
-- [ ] Motion is subtle and respects reduced-motion preferences.
+- [ ] Motion respects reduced-motion preferences.
 - [ ] There are no unnecessary dependencies or unrelated file changes.
 - [ ] The result feels polished, distinctive, and commercially usable.
 
-**Primary principle:** Build a premium, production-ready, dark SaaS experience through typography, composition, gradient and motion.
+**Primary principle:** Build a beautiful, attractive, production-ready, dark SaaS experience through typography, composition, gradient and motion.
