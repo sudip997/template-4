@@ -3,7 +3,7 @@ import { ArrowRight, Check } from "lucide-react";
 import { Container } from "@/components/layout/container";
 import { LinkButton } from "@/components/ui/link-button";
 
-import { DotField } from "./dot-field";
+// import { DotField } from "./dot-field";
 import { HeroOrb } from "./hero-orb";
 
 const TRUST_POINTS = [
@@ -16,26 +16,26 @@ const TRUST_POINTS = [
  * Layered lighting behind the hero: violet/blue pools of light, an interactive
  * dot field, and a fade into the next section.
  */
-function HeroBackground() {
-  return (
-    <div
-      aria-hidden="true"
-      className="pointer-events-none absolute inset-0 -z-10"
-    >
-      <div className="hero-glow absolute inset-0" />
-      <DotField className="[mask-image:radial-gradient(ellipse_95%_90%_at_60%_42%,#000_30%,transparent_100%)]" />
-      <div className="absolute inset-x-0 bottom-0 h-40 bg-linear-to-t from-background to-transparent" />
-    </div>
-  );
-}
+// function HeroBackground() {
+//   return (
+//     <div
+//       aria-hidden="true"
+//       className="pointer-events-none absolute inset-0 -z-10"
+//     >
+//       <div className="hero-glow absolute inset-0" />
+//       <DotField className="[mask-image:radial-gradient(ellipse_95%_90%_at_60%_42%,#000_30%,transparent_100%)]" />
+//       <div className="absolute inset-x-0 bottom-0 h-40 bg-linear-to-t from-background to-transparent" />
+//     </div>
+//   );
+// }
 
 export function Hero() {
   return (
     <section
       aria-labelledby="hero-heading"
-      className="relative isolate overflow-hidden pt-28 pb-20 sm:pt-32 lg:pt-36 lg:pb-28"
+      className="relative isolate overflow-hidden pt-24 pb-20 lg:pb-28"
     >
-      <HeroBackground />
+      {/* <HeroBackground /> */}
 
       <Container>
         <div className="grid items-center gap-14 lg:grid-cols-12 lg:gap-6">

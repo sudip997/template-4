@@ -118,11 +118,11 @@ export function DotField({ className }: DotFieldProps) {
       const offsetY = (height % SPACING) / 2;
       const field = new Float32Array(cols * rows);
 
-      ctx.clearRect(0, 0, width, height);
+      ctx!.clearRect(0, 0, width, height);
 
       // Pass 1: every dot at its resting state, batched into a single path.
-      ctx.fillStyle = `rgba(${BASE_DOT[0]},${BASE_DOT[1]},${BASE_DOT[2]},0.22)`;
-      ctx.beginPath();
+      ctx!.fillStyle = `rgba(${BASE_DOT[0]},${BASE_DOT[1]},${BASE_DOT[2]},0.22)`;
+      ctx!.beginPath();
       for (let row = 0; row < rows; row += 1) {
         for (let col = 0; col < cols; col += 1) {
           const x = offsetX + col * SPACING;
@@ -153,11 +153,11 @@ export function DotField({ className }: DotFieldProps) {
           }
 
           field[row * cols + col] = influence;
-          ctx.moveTo(x + BASE_RADIUS, y);
-          ctx.arc(x, y, BASE_RADIUS, 0, Math.PI * 2);
+          ctx!.moveTo(x + BASE_RADIUS, y);
+          ctx!.arc(x, y, BASE_RADIUS, 0, Math.PI * 2);
         }
       }
-      ctx.fill();
+      ctx!.fill();
 
       // Pass 2: lit dots on top, tinted violet (left) to blue (right).
       for (let row = 0; row < rows; row += 1) {
@@ -172,10 +172,10 @@ export function DotField({ className }: DotFieldProps) {
           const g = Math.round(lerp(violet[1], blue[1], mix));
           const b = Math.round(lerp(violet[2], blue[2], mix));
 
-          ctx.fillStyle = `rgba(${r},${g},${b},${0.3 + influence * 0.7})`;
-          ctx.beginPath();
-          ctx.arc(x, y, BASE_RADIUS + influence * 1.7, 0, Math.PI * 2);
-          ctx.fill();
+          ctx!.fillStyle = `rgba(${r},${g},${b},${0.3 + influence * 0.7})`;
+          ctx!.beginPath();
+          ctx!.arc(x, y, BASE_RADIUS + influence * 1.7, 0, Math.PI * 2);
+          ctx!.fill();
         }
       }
     }
