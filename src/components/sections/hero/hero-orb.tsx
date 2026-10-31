@@ -58,17 +58,53 @@ type Particle = {
 };
 
 const PARTICLES: readonly Particle[] = [
-  { left: "12%", top: "26%", size: "size-1.5", tone: "bg-brand-violet", delay: "-2s" },
-  { left: "86%", top: "20%", size: "size-1", tone: "bg-white/80", delay: "-5s" },
-  { left: "92%", top: "58%", size: "size-1.5", tone: "bg-brand-blue", delay: "-7s" },
-  { left: "20%", top: "78%", size: "size-1", tone: "bg-white/70", delay: "-1s" },
-  { left: "70%", top: "90%", size: "size-1.5", tone: "bg-brand-violet", delay: "-4s" },
-  { left: "6%", top: "52%", size: "size-1", tone: "bg-brand-blue", delay: "-6s" },
+  {
+    left: "12%",
+    top: "26%",
+    size: "size-1.5",
+    tone: "bg-brand-violet",
+    delay: "-2s",
+  },
+  {
+    left: "86%",
+    top: "20%",
+    size: "size-1",
+    tone: "bg-white/80",
+    delay: "-5s",
+  },
+  {
+    left: "92%",
+    top: "58%",
+    size: "size-1.5",
+    tone: "bg-brand-blue",
+    delay: "-7s",
+  },
+  {
+    left: "20%",
+    top: "78%",
+    size: "size-1",
+    tone: "bg-white/70",
+    delay: "-1s",
+  },
+  {
+    left: "70%",
+    top: "90%",
+    size: "size-1.5",
+    tone: "bg-brand-violet",
+    delay: "-4s",
+  },
+  {
+    left: "6%",
+    top: "52%",
+    size: "size-1",
+    tone: "bg-brand-blue",
+    delay: "-6s",
+  },
 ] as const;
 
 const SPHERE_BACKGROUND = [
   // specular highlight
-  "radial-gradient(circle at 30% 24%, rgb(255 255 255 / 0.55) 0%, rgb(255 255 255 / 0) 16%)",
+  "radial-gradient(circle at 30% 24%, rgb(255 255 255 / 0.35) 0%, rgb(255 255 255 / 0) 16%)",
   // blue rim light from the lower right
   "radial-gradient(circle at 84% 88%, rgb(96 165 250 / 0.7) 0%, rgb(96 165 250 / 0) 46%)",
   // violet body falling off to a deep indigo core
@@ -143,7 +179,8 @@ export function HeroOrb({ className }: { className?: string }) {
       if (!root) return;
       const rect = root.getBoundingClientRect();
       const dx =
-        (event.clientX - (rect.left + rect.width / 2)) / (window.innerWidth / 2);
+        (event.clientX - (rect.left + rect.width / 2)) /
+        (window.innerWidth / 2);
       const dy =
         (event.clientY - (rect.top + rect.height / 2)) /
         (window.innerHeight / 2);
@@ -160,10 +197,7 @@ export function HeroOrb({ className }: { className?: string }) {
       ref={rootRef}
       data-hero-orb
       aria-hidden="true"
-      className={cn(
-        "relative aspect-square w-full select-none",
-        className,
-      )}
+      className={cn("relative aspect-square w-full select-none", className)}
     >
       <motion.div
         className="absolute inset-0"
@@ -194,7 +228,10 @@ export function HeroOrb({ className }: { className?: string }) {
           >
             <div
               className="absolute inset-[21%] overflow-hidden rounded-full"
-              style={{ background: SPHERE_BACKGROUND, boxShadow: SPHERE_SHADOW }}
+              style={{
+                background: SPHERE_BACKGROUND,
+                boxShadow: SPHERE_SHADOW,
+              }}
             >
               <div
                 className="animate-orbit absolute -inset-[18%] rounded-full"
