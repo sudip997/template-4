@@ -160,6 +160,8 @@
   }
   html {
     @apply font-sans;
+    /* Keep anchored sections clear of the fixed Navbar. */
+    scroll-padding-top: 5rem;
   }
   ::selection {
     background: color-mix(in srgb, var(--brand-violet) 35%, transparent);
