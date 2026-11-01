@@ -4,6 +4,7 @@ import { Container } from "@/components/layout/container";
 import { LinkButton } from "@/components/ui/link-button";
 
 // import { DotField } from "./dot-field";
+import { HeroDashboard } from "./dashboard/hero-dashboard";
 import { HeroOrb } from "./hero-orb";
 
 const TRUST_POINTS = [
@@ -33,7 +34,7 @@ export function Hero() {
   return (
     <section
       aria-labelledby="hero-heading"
-      className="relative isolate overflow-hidden pt-24 pb-20 lg:pb-28"
+      className="relative isolate overflow-hidden pt-24 pb-16 lg:pb-20"
     >
       {/* <HeroBackground /> */}
 
@@ -83,7 +84,7 @@ export function Hero() {
                   aria-hidden="true"
                 />
               </LinkButton>
-              <LinkButton href="#how-it-works" variant="secondary" size="lg">
+              <LinkButton href="#features" variant="secondary" size="lg">
                 See how it works
               </LinkButton>
             </div>
@@ -109,6 +110,8 @@ export function Hero() {
             <HeroOrb className="mx-auto max-w-[420px] sm:max-w-[500px] lg:-mx-[4%] lg:w-[108%] lg:max-w-none xl:-mx-[12%] xl:w-[124%]" />
           </div>
         </div>
+
+        <HeroDashboard className="mt-16 lg:mt-24" />
       </Container>
     </section>
   );

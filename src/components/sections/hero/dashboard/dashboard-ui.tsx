@@ -90,8 +90,9 @@ export function StatTile({ label, value, delta }: StatTileProps) {
 type FloatingCardProps = ClassNameProp & { delay?: number; children: ReactNode };
 
 /**
- * Elevated card that overlaps the dashboard window. Only shown from `lg` up,
- * where there is room for it to hang over the window edge.
+ * Elevated card that overlaps the dashboard window and fades in when it
+ * scrolls into view. Only shown from `lg` up, where there is room for it to
+ * hang over the window edge.
  */
 export function FloatingCard({
   className,
@@ -101,7 +102,8 @@ export function FloatingCard({
   return (
     <motion.div
       initial={{ opacity: 0, y: 18, scale: 0.96 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
       className={cn(
         "absolute rounded-xl border border-border bg-secondary p-4 shadow-[0_28px_56px_-18px] shadow-black/80 max-lg:hidden",

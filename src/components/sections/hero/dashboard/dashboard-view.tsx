@@ -1,15 +1,8 @@
-import { Sparkles } from "lucide-react";
 import { Fragment } from "react";
 
 import { cn } from "@/lib/utils";
 
-import {
-  Chip,
-  FauxButton,
-  FloatingCard,
-  Panel,
-  StatTile,
-} from "../dashboard-ui";
+import { FauxButton, Panel, StatTile } from "./dashboard-ui";
 
 type Tone = "violet" | "blue";
 
@@ -116,7 +109,7 @@ function Timeline() {
   );
 }
 
-export function PlanView() {
+export function DashboardView() {
   return (
     <div className="flex h-full flex-col gap-3 sm:gap-4">
       <div className="flex items-center justify-between gap-3">
@@ -149,60 +142,5 @@ export function PlanView() {
 
       <Timeline />
     </div>
-  );
-}
-
-export function PlanFloaters() {
-  return (
-    <>
-      <FloatingCard
-        delay={0.15}
-        className="-top-6 -right-4 w-[272px] xl:-right-10"
-      >
-        <div className="flex items-center justify-between gap-3">
-          <span className="flex items-center gap-2 text-xs font-medium text-foreground">
-            <span className="grid size-6 place-items-center rounded-md bg-brand-gradient text-background">
-              <Sparkles className="size-3.5" strokeWidth={2.2} />
-            </span>
-            AI planner
-          </span>
-          <Chip tone="violet">Suggestion</Chip>
-        </div>
-        <p className="mt-3 text-[13px] leading-snug text-foreground">
-          Move the live demo to Tuesday, 10:00. Projected{" "}
-          <span className="font-semibold text-brand-blue">+18% registrations</span>.
-        </p>
-        <div className="mt-3.5 flex gap-2">
-          <FauxButton>Apply</FauxButton>
-          <FauxButton variant="ghost">Dismiss</FauxButton>
-        </div>
-      </FloatingCard>
-
-      <FloatingCard
-        delay={0.3}
-        className="-bottom-6 -left-4 flex w-[236px] items-center gap-3.5 xl:-left-10"
-      >
-        <svg viewBox="0 0 40 40" className="size-12 shrink-0 -rotate-90">
-          <circle cx="20" cy="20" r="15.9155" fill="none" strokeWidth="4" className="stroke-background" />
-          <circle
-            cx="20"
-            cy="20"
-            r="15.9155"
-            fill="none"
-            strokeWidth="4"
-            strokeLinecap="round"
-            strokeDasharray="92 100"
-            className="stroke-brand-violet"
-          />
-        </svg>
-        <span className="leading-tight">
-          <span className="block text-xs text-muted-foreground">Budget pacing</span>
-          <span className="mt-1 block font-heading text-lg font-semibold text-foreground">
-            92%
-          </span>
-          <span className="block text-[11px] text-brand-blue">On track · $22.1k</span>
-        </span>
-      </FloatingCard>
-    </>
   );
 }
