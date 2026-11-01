@@ -83,7 +83,7 @@ export function Hero() {
                   aria-hidden="true"
                 />
               </LinkButton>
-              <LinkButton href="#features" variant="secondary" size="lg">
+              <LinkButton href="#how-it-works" variant="secondary" size="lg">
                 See how it works
               </LinkButton>
             </div>
