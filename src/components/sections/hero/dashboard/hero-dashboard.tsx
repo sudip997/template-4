@@ -25,7 +25,7 @@ function DashboardGlow() {
       className="pointer-events-none absolute -inset-x-[16%] -inset-y-[26%] -z-10"
       style={{
         background: [
-          "radial-gradient(ellipse 48% 34% at 50% 22%, rgb(167 139 250 / 0.36), transparent 72%)",
+          "radial-gradient(ellipse 40% 30% at 50% 27%, rgb(167 139 250 / 0.36), transparent 72%)",
           "radial-gradient(ellipse 38% 42% at 22% 62%, rgb(167 139 250 / 0.38), transparent 72%)",
           "radial-gradient(ellipse 36% 42% at 78% 46%, rgb(96 165 250 / 0.36), transparent 72%)",
         ].join(", "),
@@ -147,10 +147,7 @@ export function HeroDashboard({ className }: { className?: string }) {
   const y = useTransform(scrollYProgress, [0, 1], [36, 0]);
 
   return (
-    <div
-      className={cn("relative", className)}
-      style={{ perspective: 1800 }}
-    >
+    <div className={cn("relative", className)} style={{ perspective: 1800 }}>
       <DashboardGlow />
 
       <motion.div
