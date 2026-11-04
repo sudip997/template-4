@@ -63,30 +63,32 @@ export function LogoCloud() {
         </Reveal>
       </Container>
 
-      <Reveal delay={0.12} y={0} className="mt-10 lg:mt-14">
-        <Marquee
-          label="Companies that use Vantora"
-          duration={52}
-          className="[--marquee-gap:3.5rem] lg:[--marquee-gap:5.5rem]"
-        >
-          {LOGOS.map(({ name, Mark, wordmarkClassName }) => (
-            <li
-              key={name}
-              className="group/logo flex shrink-0 items-center gap-2.5 text-muted-foreground transition-colors duration-200 hover:text-foreground"
-            >
-              <Mark className="size-6 shrink-0 transition-colors duration-200 group-hover/logo:text-brand-violet" />
-              <span
-                className={cn(
-                  "leading-none whitespace-nowrap",
-                  wordmarkClassName,
-                )}
+      <Container>
+        <Reveal delay={0.12} y={0} className="mt-10 lg:mt-14">
+          <Marquee
+            label="Companies that use Vantora"
+            duration={120}
+            className="[--marquee-gap:3.5rem] lg:[--marquee-gap:5.5rem]"
+          >
+            {LOGOS.map(({ name, Mark, wordmarkClassName }) => (
+              <li
+                key={name}
+                className="group/logo flex shrink-0 items-center gap-2.5 text-muted-foreground transition-colors duration-200 hover:text-foreground"
               >
-                {name}
-              </span>
-            </li>
-          ))}
-        </Marquee>
-      </Reveal>
+                <Mark className="size-6 shrink-0 transition-colors duration-200 group-hover/logo:text-brand-violet" />
+                <span
+                  className={cn(
+                    "leading-none whitespace-nowrap",
+                    wordmarkClassName,
+                  )}
+                >
+                  {name}
+                </span>
+              </li>
+            ))}
+          </Marquee>
+        </Reveal>
+      </Container>
     </section>
   );
 }
