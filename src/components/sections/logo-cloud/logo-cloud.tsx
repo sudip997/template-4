@@ -21,10 +21,10 @@ export function LogoCloud() {
       {/* Hairline that separates the strip from the Hero, plus a faint pool of
           violet light behind the logos. It fades out well inside the section,
           so it never leaves a seam against the next one. */}
-      <div
+      {/* <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-border to-transparent"
-      />
+      /> */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 -z-10"
