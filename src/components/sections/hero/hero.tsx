@@ -111,7 +111,7 @@ export function Hero() {
           </div>
         </div>
 
-        <HeroDashboard className="mt-16 lg:mt-24" />
+        <HeroDashboard className="mt-5" />
       </Container>
     </section>
   );
