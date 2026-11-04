@@ -58,6 +58,16 @@
   --animate-float: float 9s ease-in-out infinite;
   --animate-orbit: orbit-spin 32s linear infinite;
   --animate-glow: glow-pulse 7s ease-in-out infinite;
+  /* Infinite marquee. 48s is the default speed; the Marquee component overrides
+     it per instance with an inline animation-duration. */
+  --animate-marquee: marquee 48s linear infinite;
+  --animate-marquee-reverse: marquee 48s linear infinite reverse;
+
+  @keyframes marquee {
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
 
   @keyframes orbit-spin {
     to {
@@ -179,7 +189,9 @@
   .animate-rise,
   .animate-float,
   .animate-orbit,
-  .animate-glow {
+  .animate-glow,
+  .animate-marquee,
+  .animate-marquee-reverse {
     animation: none;
   }
 }
@@ -224,6 +236,33 @@
       color-mix(in srgb, var(--brand-blue) 18%, transparent),
       transparent 72%
     );
+}
+
+/* Fades the left and right edges of an element to transparent. The fade is
+   12% of the width, clamped to 3rem-15rem, so it stays graceful from a phone
+   to an ultrawide. Removed for reduced motion, where the marquee becomes a
+   static, wrapped list that has no clipped edges to hide. */
+@utility fade-edges-x {
+  --fade-size: clamp(3rem, 12%, 15rem);
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 var(--fade-size),
+    #000 calc(100% - var(--fade-size)),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 var(--fade-size),
+    #000 calc(100% - var(--fade-size)),
+    transparent 100%
+  );
+
+  @media (prefers-reduced-motion: reduce) {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
 }
 
 /* Turns a filled disc into a thin ring (used with a conic-gradient background
