@@ -15,16 +15,14 @@ export function LaunchFlow() {
       aria-labelledby="launch-flow-heading"
       className="relative isolate py-20 lg:py-28"
     >
-      {/* Pools of light that the glass panels pick up. They fade out well
-          inside the section, so they never leave a seam. */}
+      {/* One faint pool of violet light. It fades out well inside the section,
+          so it never leaves a seam. */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 -z-10"
         style={{
-          background: [
-            "radial-gradient(ellipse 46% 40% at 78% 58%, color-mix(in srgb, var(--brand-violet) 14%, transparent), transparent 72%)",
-            "radial-gradient(ellipse 38% 38% at 10% 82%, color-mix(in srgb, var(--brand-blue) 10%, transparent), transparent 72%)",
-          ].join(", "),
+          background:
+            "radial-gradient(ellipse 46% 40% at 78% 58%, color-mix(in srgb, var(--brand-violet) 7%, transparent), transparent 72%)",
         }}
       />
 

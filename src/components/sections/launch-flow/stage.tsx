@@ -10,13 +10,6 @@ import { STEPS, type Step } from "./steps";
 import { useGatedProgress } from "./use-gated-progress";
 import { CANVAS } from "./visuals/visual-ui";
 
-/** One lighting recipe per step, cross-faded behind the diagrams. */
-const LIGHTING = [
-  "radial-gradient(ellipse 60% 55% at 86% 8%, rgb(167 139 250 / 0.3), transparent 70%), radial-gradient(ellipse 50% 50% at 6% 96%, rgb(96 165 250 / 0.2), transparent 70%)",
-  "radial-gradient(ellipse 56% 55% at 50% 0%, rgb(96 165 250 / 0.28), transparent 70%), radial-gradient(ellipse 56% 50% at 92% 100%, rgb(167 139 250 / 0.24), transparent 70%)",
-  "radial-gradient(ellipse 56% 55% at 12% 6%, rgb(167 139 250 / 0.28), transparent 70%), radial-gradient(ellipse 60% 55% at 94% 90%, rgb(96 165 250 / 0.26), transparent 70%)",
-] as const;
-
 type VisualSlotProps = {
   step: Step;
   active: boolean;
@@ -37,8 +30,8 @@ function VisualSlot({ step, active, progress }: VisualSlotProps) {
       aria-label={active ? step.visualLabel : undefined}
       aria-hidden={active ? undefined : true}
       className={cn(
-        "absolute inset-0 transition-[opacity,visibility,transform] duration-500 ease-out motion-reduce:transition-none",
-        active ? "visible opacity-100" : "invisible scale-[0.98] opacity-0",
+        "absolute inset-0 transition-[opacity,visibility] duration-500 ease-out motion-reduce:transition-none",
+        active ? "visible opacity-100" : "invisible opacity-0",
       )}
     >
       <Visual progress={gated} />
@@ -57,7 +50,7 @@ type StageProps = {
   activeTabId: string;
 };
 
-/** Frosted-glass window that holds the animated diagram for the active step. */
+/** Dark panel that holds the animated diagram for the active step. */
 export function Stage({
   active,
   progress,
@@ -69,15 +62,13 @@ export function Stage({
 }: StageProps) {
   return (
     <div className="relative">
-      {/* Light spilling out from behind the glass. */}
+      {/* One faint pool of violet behind the panel. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -inset-x-[10%] -inset-y-[16%] -z-10"
+        className="pointer-events-none absolute -inset-x-[8%] -inset-y-[12%] -z-10"
         style={{
-          background: [
-            "radial-gradient(ellipse 46% 40% at 70% 28%, rgb(167 139 250 / 0.3), transparent 72%)",
-            "radial-gradient(ellipse 42% 44% at 26% 76%, rgb(96 165 250 / 0.26), transparent 72%)",
-          ].join(", "),
+          background:
+            "radial-gradient(ellipse 50% 44% at 60% 40%, rgb(167 139 250 / 0.1), transparent 72%)",
         }}
       />
 
@@ -85,20 +76,8 @@ export function Stage({
         id={panelId}
         role="tabpanel"
         aria-labelledby={activeTabId}
-        className="relative overflow-hidden rounded-2xl border border-white/10 bg-linear-to-b from-white/[0.07] to-white/[0.02] shadow-[0_40px_120px_-30px_rgb(0_0_0/0.9),inset_0_1px_0_0_rgb(255_255_255/0.08)] backdrop-blur-2xl before:absolute before:inset-x-16 before:top-0 before:z-10 before:h-px before:bg-linear-to-r before:from-transparent before:via-brand-violet/80 before:to-transparent"
+        className="relative overflow-hidden rounded-2xl border border-border bg-card shadow-[0_24px_60px_-30px_rgb(0_0_0/0.8)]"
       >
-        {LIGHTING.map((background, index) => (
-          <div
-            key={index}
-            aria-hidden="true"
-            className={cn(
-              "pointer-events-none absolute inset-0 transition-opacity duration-700 motion-reduce:transition-none",
-              index === active ? "opacity-100" : "opacity-0",
-            )}
-            style={{ background }}
-          />
-        ))}
-
         <ScaledCanvas width={CANVAS.width} height={CANVAS.height}>
           {STEPS.map((step, index) => (
             <VisualSlot
@@ -116,7 +95,7 @@ export function Stage({
           type="button"
           onClick={onTogglePaused}
           aria-label={paused ? "Play step animation" : "Pause step animation"}
-          className="absolute right-3 bottom-3 z-20 grid size-9 place-items-center rounded-full border border-white/10 bg-white/[0.06] text-foreground backdrop-blur-md outline-none transition-colors hover:bg-white/[0.12] focus-visible:ring-2 focus-visible:ring-ring"
+          className="absolute right-3 bottom-3 z-20 grid size-9 place-items-center rounded-full border border-border bg-surface-2 text-foreground outline-none transition-colors hover:bg-secondary focus-visible:ring-2 focus-visible:ring-ring"
         >
           {paused ? (
             <Play className="size-4" aria-hidden="true" />
