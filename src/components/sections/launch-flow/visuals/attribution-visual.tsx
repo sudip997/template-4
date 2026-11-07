@@ -15,10 +15,9 @@ import { cn } from "@/lib/utils";
 
 import type { VisualProps } from "./types";
 import {
-  Blob,
   CANVAS,
-  GLASS,
-  GLASS_SHADOW,
+  SURFACE,
+  SURFACE_SHADOW,
   IconTile,
   MiniChip,
 } from "./visual-ui";
@@ -99,8 +98,8 @@ function ChannelCard({
     <motion.div
       className={cn(
         "absolute flex items-center gap-3 rounded-xl px-3",
-        GLASS,
-        GLASS_SHADOW,
+        SURFACE,
+        SURFACE_SHADOW,
       )}
       style={{
         left: CH_X,
@@ -113,7 +112,7 @@ function ChannelCard({
     >
       <IconTile
         icon={Icon}
-        tone={isTop ? "brand" : "neutral"}
+        tone={isTop ? "accent" : "neutral"}
         className="size-8"
       />
       <div className="min-w-0 flex-1 leading-tight">
@@ -122,7 +121,7 @@ function ChannelCard({
         </p>
         <span className="mt-1.5 block h-1 w-full rounded-full bg-white/10">
           <motion.span
-            className="block h-full origin-left rounded-full bg-brand-gradient"
+            className="block h-full origin-left rounded-full bg-brand-violet"
             style={{ scaleX: bar, width: `${(channel.share / 42) * 100}%` }}
           />
         </span>
@@ -134,7 +133,7 @@ function ChannelCard({
       {isTop && (
         <motion.span
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-brand-violet/60 shadow-[0_0_32px_-8px_rgb(167_139_250/0.65)]"
+          className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-brand-violet/40"
           style={{ opacity: lit }}
         />
       )}
@@ -169,7 +168,7 @@ function Flow({
       />
       <motion.path
         d={d}
-        stroke="url(#attribution-flow)"
+        className="stroke-brand-violet/70"
         strokeWidth={channel.flow}
         strokeLinecap="round"
         style={{ pathLength: draw, opacity: visible }}
@@ -201,7 +200,7 @@ function RevenueCard({ progress }: WithProgress) {
 
   return (
     <motion.div
-      className={cn("absolute rounded-xl p-3", GLASS, GLASS_SHADOW)}
+      className={cn("absolute rounded-xl p-3", SURFACE, SURFACE_SHADOW)}
       style={{
         left: REV_X,
         top: REV_Y,
@@ -216,7 +215,7 @@ function RevenueCard({ progress }: WithProgress) {
         <p className="text-xs text-muted-foreground">Attributed revenue</p>
       </div>
 
-      <motion.p className="text-brand-gradient mt-3 font-heading text-[28px] leading-none font-semibold tracking-[-0.03em] tabular-nums">
+      <motion.p className="mt-3 text-foreground font-heading text-[28px] leading-none font-semibold tracking-[-0.03em] tabular-nums">
         {revenue}
       </motion.p>
 
@@ -234,30 +233,14 @@ function RevenueCard({ progress }: WithProgress) {
         fill="none"
         aria-hidden="true"
       >
-        <defs>
-          <linearGradient id="attribution-line" x1="0" x2="1" y1="0" y2="0">
-            <stop offset="0%" style={{ stopColor: "var(--brand-violet)" }} />
-            <stop offset="100%" style={{ stopColor: "var(--brand-blue)" }} />
-          </linearGradient>
-          <linearGradient id="attribution-area" x1="0" x2="0" y1="0" y2="1">
-            <stop
-              offset="0%"
-              style={{ stopColor: "var(--brand-violet)", stopOpacity: 0.32 }}
-            />
-            <stop
-              offset="100%"
-              style={{ stopColor: "var(--brand-violet)", stopOpacity: 0 }}
-            />
-          </linearGradient>
-        </defs>
         <motion.path
           d={SPARK_AREA}
-          fill="url(#attribution-area)"
+          className="fill-brand-violet/10"
           style={{ opacity: area }}
         />
         <motion.path
           d={SPARK_LINE}
-          stroke="url(#attribution-line)"
+          className="stroke-brand-violet"
           strokeWidth="2"
           strokeLinecap="round"
           style={{ pathLength: line }}
@@ -302,8 +285,6 @@ function Caption({ progress }: WithProgress) {
 export function AttributionVisual({ progress }: VisualProps) {
   return (
     <div className="absolute inset-0">
-      <Blob tone="violet" className="-top-16 -left-14 size-96" />
-      <Blob tone="blue" className="-right-12 -bottom-20 size-[26rem]" />
 
       <svg
         className="absolute inset-0"
@@ -313,19 +294,6 @@ export function AttributionVisual({ progress }: VisualProps) {
         fill="none"
         aria-hidden="true"
       >
-        <defs>
-          <linearGradient
-            id="attribution-flow"
-            gradientUnits="userSpaceOnUse"
-            x1={CH_X + CH_W}
-            y1="0"
-            x2={REV_X}
-            y2="0"
-          >
-            <stop offset="0%" style={{ stopColor: "var(--brand-violet)" }} />
-            <stop offset="100%" style={{ stopColor: "var(--brand-blue)" }} />
-          </linearGradient>
-        </defs>
         {CHANNELS.map((channel, index) => (
           <Flow
             key={channel.name}

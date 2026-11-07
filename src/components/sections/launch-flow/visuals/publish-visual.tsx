@@ -17,10 +17,9 @@ import { cn } from "@/lib/utils";
 
 import type { VisualProps } from "./types";
 import {
-  Blob,
   CANVAS,
-  GLASS,
-  GLASS_SHADOW,
+  SURFACE,
+  SURFACE_SHADOW,
   IconTile,
   MiniChip,
 } from "./visual-ui";
@@ -84,7 +83,7 @@ function StageCard({
 
   return (
     <motion.div
-      className={cn("absolute rounded-xl p-2.5", GLASS, GLASS_SHADOW)}
+      className={cn("absolute rounded-xl p-2.5", SURFACE, SURFACE_SHADOW)}
       style={{
         left: CARD_XS[index],
         top: CARD_TOP,
@@ -110,7 +109,7 @@ function StageCard({
 
       <motion.span
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-brand-violet/55 shadow-[0_0_32px_-8px_rgb(167_139_250/0.6)]"
+        className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-brand-violet/40"
         style={{ opacity: lit }}
       />
     </motion.div>
@@ -177,7 +176,7 @@ function Link({
       />
       <motion.path
         d={d}
-        stroke="url(#publish-link)"
+        className="stroke-brand-violet"
         strokeWidth="2"
         strokeLinecap="round"
         style={{ pathLength: draw, opacity: visible }}
@@ -210,8 +209,8 @@ function DestinationPill({
     <motion.div
       className={cn(
         "absolute flex items-center gap-2.5 rounded-xl px-3",
-        GLASS,
-        GLASS_SHADOW,
+        SURFACE,
+        SURFACE_SHADOW,
       )}
       style={{
         left: PILL_X,
@@ -236,14 +235,14 @@ function DestinationPill({
         </span>
       </motion.span>
       <motion.span
-        className="grid size-5 place-items-center rounded-full bg-brand-gradient text-background"
+        className="grid size-5 place-items-center rounded-full bg-brand-violet text-background"
         style={{ opacity: lit }}
       >
         <Check className="size-3" strokeWidth={3} aria-hidden="true" />
       </motion.span>
       <motion.span
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-brand-blue/50 shadow-[0_0_28px_-8px_rgb(96_165_250/0.6)]"
+        className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-brand-violet/40"
         style={{ opacity: lit }}
       />
     </motion.div>
@@ -268,7 +267,7 @@ function DayCell({
     <motion.div
       className={cn(
         "absolute flex flex-col justify-between rounded-xl p-2.5",
-        GLASS,
+        SURFACE,
       )}
       style={{
         left: CAL_X + index * (CAL_CELL_W + CAL_GAP),
@@ -292,7 +291,7 @@ function DayCell({
       {isTuesday && (
         <motion.span
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 rounded-xl bg-linear-to-br from-brand-violet/30 to-brand-blue/20 ring-1 ring-brand-violet/60 shadow-[0_0_32px_-8px_rgb(167_139_250/0.7)]"
+          className="pointer-events-none absolute inset-0 rounded-xl bg-brand-violet/15 ring-1 ring-brand-violet/50"
           style={{ opacity: lit }}
         />
       )}
@@ -308,7 +307,7 @@ function TuesdayDot({
   const opacity = useTransform(progress, [at, at + 0.04], [0, 1]);
   return (
     <motion.span
-      className="relative z-10 size-1.5 rounded-full bg-brand-gradient"
+      className="relative z-10 size-1.5 rounded-full bg-brand-violet"
       style={{ opacity }}
     />
   );
@@ -378,8 +377,6 @@ export function PublishVisual({ progress }: VisualProps) {
 
   return (
     <div className="absolute inset-0">
-      <Blob tone="blue" className="-top-20 -left-12 size-96" />
-      <Blob tone="violet" className="-right-16 -bottom-24 size-[26rem]" />
 
       <svg
         className="absolute inset-0"
@@ -389,19 +386,6 @@ export function PublishVisual({ progress }: VisualProps) {
         fill="none"
         aria-hidden="true"
       >
-        <defs>
-          <linearGradient
-            id="publish-link"
-            gradientUnits="userSpaceOnUse"
-            x1={LINK_FROM}
-            y1="0"
-            x2={LINK_TO}
-            y2="0"
-          >
-            <stop offset="0%" style={{ stopColor: "var(--brand-violet)" }} />
-            <stop offset="100%" style={{ stopColor: "var(--brand-blue)" }} />
-          </linearGradient>
-        </defs>
         {links.map((link) => (
           <Link key={link.d} progress={progress} {...link} />
         ))}

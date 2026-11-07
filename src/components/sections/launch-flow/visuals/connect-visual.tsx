@@ -14,7 +14,7 @@ import {
 import { cn } from "@/lib/utils";
 
 import type { VisualProps } from "./types";
-import { Blob, CANVAS, GLASS, GLASS_SHADOW, IconTile } from "./visual-ui";
+import { CANVAS, IconTile, SURFACE, SURFACE_SHADOW } from "./visual-ui";
 
 const GOAL = "Grow demo signups 30% this quarter";
 /** The goal has finished typing by this point in the step. */
@@ -85,8 +85,8 @@ function GoalCard({ progress }: WithProgress) {
     <motion.div
       className={cn(
         "absolute flex items-center gap-3 rounded-xl px-3.5",
-        GLASS,
-        GLASS_SHADOW,
+        SURFACE,
+        SURFACE_SHADOW,
       )}
       style={{
         left: ROW_X,
@@ -140,8 +140,8 @@ function ChannelRow({
     <motion.div
       className={cn(
         "absolute flex items-center gap-3 rounded-xl px-3.5",
-        GLASS,
-        GLASS_SHADOW,
+        SURFACE,
+        SURFACE_SHADOW,
       )}
       style={{
         left: ROW_X,
@@ -187,7 +187,7 @@ function ChannelRow({
 
       <span className="relative block h-[22px] w-10 shrink-0 rounded-full bg-white/10">
         <motion.span
-          className="absolute inset-0 rounded-full bg-brand-gradient"
+          className="absolute inset-0 rounded-full bg-brand-violet"
           style={{ opacity: trackOn }}
         />
         <motion.span
@@ -198,7 +198,7 @@ function ChannelRow({
 
       <motion.span
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-brand-violet/50 shadow-[0_0_32px_-8px_rgb(167_139_250/0.6)]"
+        className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-brand-violet/40"
         style={{ opacity: connected }}
       />
     </motion.div>
@@ -253,11 +253,12 @@ function ReadyBadge({ progress }: WithProgress) {
     >
       <div
         className={cn(
-          "flex items-center gap-2.5 rounded-full py-2 pr-4 pl-2 shadow-[0_14px_40px_-10px_rgb(167_139_250/0.55)]",
-          GLASS,
+          "flex items-center gap-2.5 rounded-full py-2 pr-4 pl-2",
+          SURFACE,
+          SURFACE_SHADOW,
         )}
       >
-        <span className="grid size-6 place-items-center rounded-full bg-brand-gradient text-background">
+        <span className="grid size-6 place-items-center rounded-full bg-brand-violet text-background">
           <Check className="size-3.5" strokeWidth={3} aria-hidden="true" />
         </span>
         <span className="text-[13px] font-medium text-foreground">
@@ -281,8 +282,6 @@ export function ConnectVisual({ progress }: VisualProps) {
 
   return (
     <div className="absolute inset-0">
-      <Blob tone="violet" className="-top-16 -right-10 size-96" />
-      <Blob tone="blue" className="-bottom-24 -left-16 size-96" />
 
       <svg
         className="absolute inset-0"
@@ -292,19 +291,6 @@ export function ConnectVisual({ progress }: VisualProps) {
         fill="none"
         aria-hidden="true"
       >
-        <defs>
-          <linearGradient
-            id="connect-thread"
-            gradientUnits="userSpaceOnUse"
-            x1="0"
-            y1={GOAL_CENTER}
-            x2="0"
-            y2={rowCenter(LAST_ROW)}
-          >
-            <stop offset="0%" style={{ stopColor: "var(--brand-violet)" }} />
-            <stop offset="100%" style={{ stopColor: "var(--brand-blue)" }} />
-          </linearGradient>
-        </defs>
         <path
           d={THREAD_PATH}
           stroke="rgb(255 255 255 / 0.1)"
@@ -313,7 +299,7 @@ export function ConnectVisual({ progress }: VisualProps) {
         />
         <motion.path
           d={THREAD_PATH}
-          stroke="url(#connect-thread)"
+          className="stroke-brand-violet"
           strokeWidth="2"
           strokeLinecap="round"
           style={{ pathLength: threadLength }}

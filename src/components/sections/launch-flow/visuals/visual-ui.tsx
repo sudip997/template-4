@@ -6,52 +6,24 @@ import { cn } from "@/lib/utils";
 /** Design size of every diagram. The stage scales this box to fit its width. */
 export const CANVAS = { width: 560, height: 440 } as const;
 
-/** Frosted-glass surface used by every card inside the diagrams. */
-export const GLASS = "border border-white/10 bg-white/[0.06] backdrop-blur-md";
+/** Flat raised surface used by every card inside the diagrams. */
+export const SURFACE = "border border-border bg-surface-2";
 
-/** Soft drop shadow plus a faint top highlight, the "lit glass" edge. */
-export const GLASS_SHADOW =
-  "shadow-[0_18px_40px_-18px_rgb(0_0_0/0.85),inset_0_1px_0_0_rgb(255_255_255/0.09)]";
-
-const BLOB_COLORS = {
-  violet: "rgb(167 139 250 / 0.32)",
-  blue: "rgb(96 165 250 / 0.28)",
-} as const;
-
-/**
- * Soft pool of colour behind the cards, so the glass has something to blur.
- * Position and size come from `className`.
- */
-export function Blob({
-  tone,
-  className,
-}: {
-  tone: keyof typeof BLOB_COLORS;
-  className?: string;
-}) {
-  return (
-    <div
-      aria-hidden="true"
-      className={cn("pointer-events-none absolute rounded-full", className)}
-      style={{
-        background: `radial-gradient(circle, ${BLOB_COLORS[tone]}, transparent 66%)`,
-      }}
-    />
-  );
-}
+/** One soft, short shadow. Depth comes from the surface colour, not effects. */
+export const SURFACE_SHADOW = "shadow-[0_8px_24px_-14px_rgb(0_0_0/0.7)]";
 
 type IconTileProps = {
   icon: LucideIcon;
   size?: "sm" | "md";
-  /** `brand` is the violet-to-blue gradient; `neutral` is quiet glass. */
-  tone?: "brand" | "neutral";
+  /** `accent` is a quiet violet tint; `neutral` is plain gray. */
+  tone?: "accent" | "neutral";
   className?: string;
 };
 
 export function IconTile({
   icon: Icon,
   size = "md",
-  tone = "brand",
+  tone = "accent",
   className,
 }: IconTileProps) {
   return (
@@ -59,9 +31,9 @@ export function IconTile({
       className={cn(
         "grid shrink-0 place-items-center",
         size === "sm" ? "size-7 rounded-md" : "size-9 rounded-lg",
-        tone === "brand"
-          ? "bg-brand-gradient text-background shadow-[0_8px_20px_-8px] shadow-brand-violet/60"
-          : "border border-white/10 bg-white/[0.08] text-foreground",
+        tone === "accent"
+          ? "bg-brand-violet/15 text-brand-violet"
+          : "bg-white/[0.06] text-foreground",
         className,
       )}
     >
