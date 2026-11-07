@@ -18,7 +18,7 @@ export type Step = {
 };
 
 /** Seconds each step stays active before the player moves on. */
-export const STEP_DURATION = 7;
+export const STEP_DURATION = 10;
 
 export const STEPS: readonly Step[] = [
   {
