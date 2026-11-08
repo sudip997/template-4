@@ -8,6 +8,11 @@ type ScaledCanvasProps = {
   /** Design size in px. Children are laid out inside this box. */
   width: number;
   height: number;
+  /**
+   * Largest scale the box may reach. Without it the box would grow with its
+   * container, blowing the diagram and its text up on wide screens.
+   */
+  maxScale?: number;
   className?: string;
   children: ReactNode;
 };
@@ -24,6 +29,7 @@ type ScaledCanvasProps = {
 export function ScaledCanvas({
   width,
   height,
+  maxScale,
   className,
   children,
 }: ScaledCanvasProps) {
@@ -49,8 +55,11 @@ export function ScaledCanvas({
   return (
     <div
       ref={frameRef}
-      className={cn("relative w-full overflow-hidden", className)}
-      style={{ aspectRatio: `${width} / ${height}` }}
+      className={cn("relative mx-auto w-full overflow-hidden", className)}
+      style={{
+        aspectRatio: `${width} / ${height}`,
+        maxWidth: maxScale ? width * maxScale : undefined,
+      }}
     >
       {/* Hidden until the first measurement, so it never flashes unscaled. */}
       <div

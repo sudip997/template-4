@@ -10,6 +10,13 @@ import { STEPS, type Step } from "./steps";
 import { useGatedProgress } from "./use-gated-progress";
 import { CANVAS } from "./visuals/visual-ui";
 
+/**
+ * Diagrams are drawn on a 560px canvas. Capping the scale just under 1 keeps
+ * their text at a comfortable size on wide screens; on narrow screens they
+ * still shrink to fit.
+ */
+const MAX_CANVAS_SCALE = 0.95;
+
 type VisualSlotProps = {
   step: Step;
   active: boolean;
@@ -76,9 +83,13 @@ export function Stage({
         id={panelId}
         role="tabpanel"
         aria-labelledby={activeTabId}
-        className="relative overflow-hidden rounded-2xl border border-border bg-card shadow-[0_24px_60px_-30px_rgb(0_0_0/0.8)]"
+        className="relative overflow-hidden rounded-2xl border border-border bg-card bg-linear-to-br from-brand-violet/[0.08] via-transparent to-brand-blue/[0.06] shadow-[0_24px_60px_-30px_rgb(0_0_0/0.8)] sm:p-6 lg:p-8"
       >
-        <ScaledCanvas width={CANVAS.width} height={CANVAS.height}>
+        <ScaledCanvas
+          width={CANVAS.width}
+          height={CANVAS.height}
+          maxScale={MAX_CANVAS_SCALE}
+        >
           {STEPS.map((step, index) => (
             <VisualSlot
               key={step.id}
