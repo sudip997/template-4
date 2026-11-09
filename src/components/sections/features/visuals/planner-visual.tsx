@@ -225,7 +225,9 @@ export function PlannerVisual() {
             />
             Campaign brief
           </p>
-          <div className="flex flex-col gap-3 rounded-lg border border-white/10 bg-background/50 p-3 sm:flex-row sm:items-center sm:gap-4 sm:p-3.5">
+          {/* Styled as a focused text field: violet border, soft outer ring and a
+              slightly sunken fill, so it reads as an input and not as a list. */}
+          <div className="flex flex-col gap-3 rounded-lg border border-brand-violet/50 bg-background/70 p-3 shadow-[inset_0_1px_3px_rgb(0_0_0/0.45)] ring-4 ring-brand-violet/[0.12] sm:flex-row sm:items-center sm:gap-4 sm:p-3.5">
             <p className="min-w-0 flex-1 text-[13px] leading-relaxed text-foreground sm:text-sm">
               {WORDS.map((word, index) => (
                 <Fragment key={`${word}-${index}`}>
