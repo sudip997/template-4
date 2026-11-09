@@ -12,6 +12,7 @@ export default function Home() {
         <Hero />
         <LogoCloud />
         <LaunchFlow />
+        <Features />
       </main>
     </>
   );
