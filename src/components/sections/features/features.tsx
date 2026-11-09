@@ -1,9 +1,10 @@
-import { Sparkles } from "lucide-react";
+import { Route, Sparkles } from "lucide-react";
 
 import { Container } from "@/components/layout/container";
 import { Reveal } from "@/components/ui/reveal";
 
 import { FeatureCard } from "./feature-card";
+import { AttributionModelsVisual } from "./visuals/attribution-models-visual";
 import { PlannerVisual } from "./visuals/planner-visual";
 
 /**
@@ -64,6 +65,18 @@ export function Features() {
               glow="radial-gradient(ellipse 60% 55% at 88% 92%, rgb(167 139 250 / 0.16), transparent 70%), radial-gradient(ellipse 40% 40% at 52% 100%, rgb(96 165 250 / 0.12), transparent 72%)"
             >
               <PlannerVisual />
+            </FeatureCard>
+          </Reveal>
+
+          <Reveal delay={0.1} className="lg:col-span-5">
+            <FeatureCard
+              className="h-full"
+              icon={Route}
+              title="Multi-touch attribution"
+              description="Compare first-touch, last-touch, linear and data-driven models side by side, and see how credit shifts across every touch."
+              glow="radial-gradient(ellipse 55% 50% at 18% 100%, rgb(96 165 250 / 0.15), transparent 70%), radial-gradient(ellipse 45% 40% at 92% 78%, rgb(167 139 250 / 0.12), transparent 72%)"
+            >
+              <AttributionModelsVisual />
             </FeatureCard>
           </Reveal>
         </div>
