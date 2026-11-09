@@ -1,4 +1,10 @@
-import { FileText, Mail, Megaphone, Search, type LucideIcon } from "lucide-react";
+import {
+  FileText,
+  Mail,
+  Megaphone,
+  Search,
+  type LucideIcon,
+} from "lucide-react";
 
 /** One touch in a customer's journey, in the order the customer met it. */
 export type Touch = {
@@ -53,8 +59,7 @@ export const MODELS: readonly AttributionModel[] = [
     id: "data",
     label: "Data-driven",
     name: "Data-driven",
-    description:
-      "Weighs each touch by the lift it measurably adds to conversion.",
+    description: "Weighs each touch by the lift it adds to conversion.",
     credit: [12, 18, 46, 24],
   },
 ];
