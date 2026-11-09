@@ -1,3 +1,4 @@
+import { Features } from "@/components/sections/features/features";
 import { Hero } from "@/components/sections/hero/hero";
 import { LaunchFlow } from "@/components/sections/launch-flow/launch-flow";
 import { LogoCloud } from "@/components/sections/logo-cloud/logo-cloud";
