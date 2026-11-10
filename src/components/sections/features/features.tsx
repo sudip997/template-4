@@ -1,9 +1,10 @@
-import { Route, Sparkles } from "lucide-react";
+import { FlaskConical, Route, Sparkles } from "lucide-react";
 
 import { Container } from "@/components/layout/container";
 import { Reveal } from "@/components/ui/reveal";
 
 import { FeatureCard } from "./feature-card";
+import { AbTestingVisual } from "./visuals/ab-testing-visual";
 import { AttributionModelsVisual } from "./visuals/attribution-models-visual";
 import { PlannerVisual } from "./visuals/planner-visual";
 
@@ -77,6 +78,18 @@ export function Features() {
               glow="radial-gradient(ellipse 55% 50% at 18% 100%, rgb(96 165 250 / 0.15), transparent 70%), radial-gradient(ellipse 45% 40% at 92% 78%, rgb(167 139 250 / 0.12), transparent 72%)"
             >
               <AttributionModelsVisual />
+            </FeatureCard>
+          </Reveal>
+
+          <Reveal delay={0.2} className="lg:col-span-4">
+            <FeatureCard
+              className="h-full"
+              icon={FlaskConical}
+              title="A/B testing"
+              description="Test subject lines, send times or layouts on a slice of your list. Vantora spots the winner and sends it to everyone else."
+              glow="radial-gradient(ellipse 65% 40% at 80% 6%, rgb(167 139 250 / 0.14), transparent 70%), radial-gradient(ellipse 50% 40% at 18% 100%, rgb(96 165 250 / 0.1), transparent 72%)"
+            >
+              <AbTestingVisual />
             </FeatureCard>
           </Reveal>
         </div>
