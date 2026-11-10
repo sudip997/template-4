@@ -1,4 +1,4 @@
-import { FlaskConical, Route, Sparkles } from "lucide-react";
+import { FlaskConical, Route, Sparkles, Users } from "lucide-react";
 
 import { Container } from "@/components/layout/container";
 import { Reveal } from "@/components/ui/reveal";
@@ -6,6 +6,7 @@ import { Reveal } from "@/components/ui/reveal";
 import { FeatureCard } from "./feature-card";
 import { AbTestingVisual } from "./visuals/ab-testing-visual";
 import { AttributionModelsVisual } from "./visuals/attribution-models-visual";
+import { AudienceSegmentsVisual } from "./visuals/audience-segments-visual";
 import { PlannerVisual } from "./visuals/planner-visual";
 
 /**
@@ -90,6 +91,18 @@ export function Features() {
               glow="radial-gradient(ellipse 65% 40% at 80% 6%, rgb(167 139 250 / 0.14), transparent 70%), radial-gradient(ellipse 50% 40% at 18% 100%, rgb(96 165 250 / 0.1), transparent 72%)"
             >
               <AbTestingVisual />
+            </FeatureCard>
+          </Reveal>
+
+          <Reveal delay={0.3} className="lg:col-span-4">
+            <FeatureCard
+              className="h-full"
+              icon={Users}
+              title="Audience segments"
+              description="Build segments from behavior, spend and region. The audience size updates as you add rules, so you know who you're reaching before you send."
+              glow="radial-gradient(ellipse 60% 40% at 15% 4%, rgb(96 165 250 / 0.12), transparent 70%), radial-gradient(ellipse 55% 45% at 90% 100%, rgb(167 139 250 / 0.13), transparent 72%)"
+            >
+              <AudienceSegmentsVisual />
             </FeatureCard>
           </Reveal>
         </div>
