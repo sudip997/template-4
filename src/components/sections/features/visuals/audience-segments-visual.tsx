@@ -98,10 +98,10 @@ export function AudienceSegmentsVisual() {
       : `${active.size} ${active.size === 1 ? "rule" : "rules"} · ${Math.round(share * 100)}% of list`;
 
   return (
-    <div ref={ref} className="px-6 sm:px-8">
+    <div ref={ref} className="flex flex-1 flex-col px-6 sm:px-8">
       <div
         className={cn(
-          "rounded-t-xl border-x border-t border-white/10 bg-surface-2/70 p-4 pb-7 shadow-[0_-24px_60px_-30px_rgb(0_0_0/0.9),inset_0_1px_0_0_rgb(255_255_255/0.06)] backdrop-blur-xl transition-opacity duration-500 motion-reduce:transition-none sm:p-5 sm:pb-8",
+          "flex flex-1 flex-col rounded-t-xl border-x border-t border-white/10 bg-surface-2/70 p-4 pb-7 shadow-[0_-24px_60px_-30px_rgb(0_0_0/0.9),inset_0_1px_0_0_rgb(255_255_255/0.06)] backdrop-blur-xl transition-opacity duration-500 motion-reduce:transition-none sm:p-5 sm:pb-8",
           ready ? "opacity-100" : "opacity-0",
         )}
       >
@@ -125,15 +125,17 @@ export function AudienceSegmentsVisual() {
         {/* Audience size. The animated number is hidden from assistive tech;
             the polite live region below announces only the settled value. */}
         <div className="mt-5">
-          <p
+          <div
             aria-hidden="true"
-            className="font-heading text-[2.5rem] leading-none font-semibold tracking-[-0.03em] text-brand-gradient tabular-nums sm:text-[2.75rem]"
+            className="flex flex-wrap items-baseline gap-x-2.5 gap-y-1"
           >
-            <motion.span>{countText}</motion.span>
-          </p>
-          <p aria-hidden="true" className="mt-2 text-xs text-muted-foreground">
-            matching contacts of {NUMBER.format(TOTAL_CONTACTS)}
-          </p>
+            <p className="font-heading text-[2.5rem] leading-none font-semibold tracking-[-0.03em] text-brand-gradient tabular-nums sm:text-[2.75rem]">
+              <motion.span>{countText}</motion.span>
+            </p>
+            <p className="text-xs text-muted-foreground">
+              of {NUMBER.format(TOTAL_CONTACTS)} contacts
+            </p>
+          </div>
           <div
             aria-hidden="true"
             className="mt-3 h-1.5 overflow-hidden rounded-full bg-white/10"
@@ -195,7 +197,10 @@ export function AudienceSegmentsVisual() {
         </div>
 
         {/* Summary and save */}
-        <div className="mt-5 flex flex-wrap items-center justify-between gap-x-4 gap-y-3 border-t border-white/[0.08] pt-4">
+        {/* Takes up any height the card has to spare, so the panel fills the
+            card and the footer stays pinned to the bottom. */}
+        <div className="min-h-5 flex-1" />
+        <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-3 border-t border-white/[0.08] pt-4">
           <p aria-hidden="true" className="text-[13px] text-muted-foreground">
             {summary}
           </p>

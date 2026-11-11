@@ -99,7 +99,7 @@ export function Features() {
               className="h-full"
               icon={Users}
               title="Audience segments"
-              description="Build segments from behavior, spend and region. The audience size updates as you add rules, so you know who you're reaching before you send."
+              description="Build segments from behavior, spend and region, and see the audience size update with every rule you add."
               glow="radial-gradient(ellipse 60% 40% at 15% 4%, rgb(96 165 250 / 0.12), transparent 70%), radial-gradient(ellipse 55% 45% at 90% 100%, rgb(167 139 250 / 0.13), transparent 72%)"
             >
               <AudienceSegmentsVisual />
