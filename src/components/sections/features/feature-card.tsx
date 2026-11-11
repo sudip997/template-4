@@ -64,7 +64,13 @@ export function FeatureCard({
         </p>
       </div>
 
-      {children ? <div className="mt-auto pt-8 lg:pt-10">{children}</div> : null}
+      {/* Fills whatever height the grid row gives the card. Visuals sit at the
+          bottom by default; one that wants to fill the space can grow. */}
+      {children ? (
+        <div className="flex flex-1 flex-col justify-end pt-8 lg:pt-10">
+          {children}
+        </div>
+      ) : null}
     </article>
   );
 }

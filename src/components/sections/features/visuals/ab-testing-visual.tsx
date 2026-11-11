@@ -231,12 +231,12 @@ export function AbTestingVisual() {
   );
 
   return (
-    <div ref={ref} className="px-6 sm:px-8">
+    <div ref={ref} className="flex flex-1 flex-col px-6 sm:px-8">
       <div
         role="img"
         aria-label={LABEL}
         className={cn(
-          "rounded-t-xl border-x border-t border-white/10 bg-surface-2/70 p-4 pb-7 shadow-[0_-24px_60px_-30px_rgb(0_0_0/0.9),inset_0_1px_0_0_rgb(255_255_255/0.06)] backdrop-blur-xl transition-opacity duration-500 motion-reduce:transition-none sm:p-5 sm:pb-8",
+          "flex flex-1 flex-col rounded-t-xl border-x border-t border-white/10 bg-surface-2/70 p-4 pb-7 shadow-[0_-24px_60px_-30px_rgb(0_0_0/0.9),inset_0_1px_0_0_rgb(255_255_255/0.06)] backdrop-blur-xl transition-opacity duration-500 motion-reduce:transition-none sm:p-5 sm:pb-8",
           ready ? "opacity-100" : "opacity-0",
         )}
       >
@@ -291,7 +291,10 @@ export function AbTestingVisual() {
         </ul>
 
         {/* Confidence and what happens next */}
-        <div className="mt-5 flex items-center gap-3.5 border-t border-white/[0.08] pt-4">
+        {/* Takes up any height the card has to spare, so the panel fills the
+            card and the footer stays pinned to the bottom. */}
+        <div className="min-h-5 flex-1" />
+        <div className="flex items-center gap-3.5 border-t border-white/[0.08] pt-4">
           <ConfidenceRing progress={progress} />
           <div className="grid min-w-0 flex-1">
             <p className="text-xs text-muted-foreground">

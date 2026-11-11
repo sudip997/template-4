@@ -17,12 +17,16 @@ export const TOTAL_CONTACTS = 84_210;
 
 export const SEGMENT_NAME = "Engaged buyers";
 
+/**
+ * Labels are kept short and the order is chosen so the chips wrap into three
+ * rows in the narrow card, keeping it close in height to its neighbour.
+ */
 export const RULES: readonly Rule[] = [
-  { id: "purchased", label: "Purchased in last 90 days", keep: 0.34 },
-  { id: "opened", label: "Opened in last 30 days", keep: 0.52 },
-  { id: "spent", label: "Spent over $100", keep: 0.41 },
+  { id: "purchased", label: "Purchased in 90 days", keep: 0.34 },
   { id: "region", label: "Region: US", keep: 0.63 },
-  { id: "newsletter", label: "Subscribed to newsletter", keep: 0.78 },
+  { id: "opened", label: "Opened in 30 days", keep: 0.52 },
+  { id: "spent", label: "Spent $100+", keep: 0.41 },
+  { id: "newsletter", label: "Email subscribers", keep: 0.78 },
 ];
 
 /** The rules that are on when the card first appears. */
