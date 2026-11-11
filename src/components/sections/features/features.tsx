@@ -1,4 +1,4 @@
-import { FlaskConical, Route, Sparkles, Users } from "lucide-react";
+import { FlaskConical, Gauge, Route, Sparkles, Users } from "lucide-react";
 
 import { Container } from "@/components/layout/container";
 import { Reveal } from "@/components/ui/reveal";
@@ -7,6 +7,7 @@ import { FeatureCard } from "./feature-card";
 import { AbTestingVisual } from "./visuals/ab-testing-visual";
 import { AttributionModelsVisual } from "./visuals/attribution-models-visual";
 import { AudienceSegmentsVisual } from "./visuals/audience-segments-visual";
+import { BudgetPacingVisual } from "./visuals/budget-pacing-visual";
 import { PlannerVisual } from "./visuals/planner-visual";
 
 /**
@@ -103,6 +104,18 @@ export function Features() {
               glow="radial-gradient(ellipse 60% 40% at 15% 4%, rgb(96 165 250 / 0.12), transparent 70%), radial-gradient(ellipse 55% 45% at 90% 100%, rgb(167 139 250 / 0.13), transparent 72%)"
             >
               <AudienceSegmentsVisual />
+            </FeatureCard>
+          </Reveal>
+
+          <Reveal delay={0.4} className="lg:col-span-4">
+            <FeatureCard
+              className="h-full"
+              icon={Gauge}
+              title="Budget pacing & alerts"
+              description="Track spend against the pace you planned and get an alert before a campaign overspends. Fix it in one click."
+              glow="radial-gradient(ellipse 55% 40% at 50% 0%, rgb(167 139 250 / 0.12), transparent 70%), radial-gradient(ellipse 50% 45% at 85% 88%, rgb(96 165 250 / 0.12), transparent 72%)"
+            >
+              <BudgetPacingVisual />
             </FeatureCard>
           </Reveal>
         </div>
