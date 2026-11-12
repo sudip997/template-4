@@ -3,6 +3,7 @@ import { FlaskConical, Gauge, Route, Sparkles, Users } from "lucide-react";
 import { Container } from "@/components/layout/container";
 import { Reveal } from "@/components/ui/reveal";
 
+import { EnterpriseBand } from "./enterprise-band";
 import { FeatureCard } from "./feature-card";
 import { AbTestingVisual } from "./visuals/ab-testing-visual";
 import { AttributionModelsVisual } from "./visuals/attribution-models-visual";
@@ -117,6 +118,10 @@ export function Features() {
             >
               <BudgetPacingVisual />
             </FeatureCard>
+          </Reveal>
+
+          <Reveal delay={0.1} className="md:col-span-2 lg:col-span-12">
+            <EnterpriseBand />
           </Reveal>
         </div>
       </Container>
