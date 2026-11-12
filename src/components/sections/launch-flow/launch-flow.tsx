@@ -1,4 +1,5 @@
 import { Container } from "@/components/layout/container";
+import { SectionBackground } from "@/components/layout/section-background";
 import { Reveal } from "@/components/ui/reveal";
 
 import { StepPlayer } from "./step-player";
@@ -15,17 +16,7 @@ export function LaunchFlow() {
       aria-labelledby="launch-flow-heading"
       className="relative isolate py-20 lg:py-28"
     >
-      {/* One faint pool of violet light. It fades out well inside the section,
-          so it never leaves a seam. */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10"
-        style={{
-          background:
-            "radial-gradient(ellipse 46% 40% at 78% 58%, color-mix(in srgb, var(--brand-violet) 7%, transparent), transparent 72%)",
-        }}
-      />
-
+      <SectionBackground variant="launch" />
       <Container>
         <Reveal className="max-w-2xl">
           <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-[13px] text-muted-foreground backdrop-blur-md">
