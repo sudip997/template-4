@@ -33,7 +33,7 @@ type Config = {
   /** Large soft pools of light. */
   pools: string;
   /** A wide cone of light falling from a top corner. */
-  beam: { background: string; fade: string };
+  //   beam: { background: string; fade: string };
   /** The one slowly breathing orb of light. */
   orb: { className: string; background: string; delay: string };
   /** Optional hairline rings that echo the Hero orb's orbit arcs. */
@@ -49,13 +49,12 @@ const CONFIG: Record<SectionBackgroundVariant, Config> = {
       `radial-gradient(ellipse 38% 34% at 6% 92%, ${blue(11)}, transparent 72%)`,
       `radial-gradient(ellipse 34% 26% at 30% 4%, ${violet(9)}, transparent 72%)`,
     ].join(", "),
-    beam: {
-      background: `conic-gradient(from 184deg at 92% -6%, transparent 0deg, ${violet(15)} 9deg, ${blue(9)} 17deg, transparent 29deg)`,
-      fade: "radial-gradient(ellipse 78% 92% at 92% 0%, #000 0%, transparent 100%)",
-    },
+    // beam: {
+    //   background: `conic-gradient(from 184deg at 92% -6%, transparent 0deg, ${violet(15)} 9deg, ${blue(9)} 17deg, transparent 29deg)`,
+    //   fade: "radial-gradient(ellipse 78% 92% at 92% 0%, #000 0%, transparent 100%)",
+    // },
     orb: {
-      className:
-        "top-[30%] -right-[14%] aspect-square w-[min(78vw,760px)]",
+      className: "top-[30%] -right-[14%] aspect-square w-[min(78vw,760px)]",
       background: `radial-gradient(circle, ${violet(24)} 0%, ${blue(10)} 38%, transparent 68%)`,
       delay: "0s",
     },
@@ -67,13 +66,12 @@ const CONFIG: Record<SectionBackgroundVariant, Config> = {
       `radial-gradient(ellipse 36% 28% at 96% 44%, ${blue(12)}, transparent 72%)`,
       `radial-gradient(ellipse 62% 24% at 50% 94%, ${violet(13)}, transparent 72%)`,
     ].join(", "),
-    beam: {
-      background: `conic-gradient(from 126deg at 8% -6%, transparent 0deg, ${blue(9)} 11deg, ${violet(15)} 19deg, transparent 29deg)`,
-      fade: "radial-gradient(ellipse 78% 92% at 8% 0%, #000 0%, transparent 100%)",
-    },
+    // beam: {
+    //   background: `conic-gradient(from 126deg at 8% -6%, transparent 0deg, ${blue(9)} 11deg, ${violet(15)} 19deg, transparent 29deg)`,
+    //   fade: "radial-gradient(ellipse 78% 92% at 8% 0%, #000 0%, transparent 100%)",
+    // },
     orb: {
-      className:
-        "-top-[2%] -left-[12%] aspect-square w-[min(70vw,680px)]",
+      className: "-top-[2%] -left-[12%] aspect-square w-[min(70vw,680px)]",
       background: `radial-gradient(circle, ${violet(20)} 0%, ${blue(8)} 40%, transparent 68%)`,
       // Offset from Launch Flow's orb so the two never pulse in step.
       delay: "-3.5s",
@@ -99,7 +97,7 @@ export function SectionBackground({
   variant,
   className,
 }: SectionBackgroundProps) {
-  const { pools, beam, orb, rings, dividerTint } = CONFIG[variant];
+  const { pools, orb, rings, dividerTint } = CONFIG[variant];
 
   return (
     <div
@@ -113,7 +111,7 @@ export function SectionBackground({
 
         <div
           className="absolute inset-0"
-          style={{ background: beam.background, ...mask(beam.fade) }}
+          //   style={{ background: beam.background, ...mask(beam.fade) }}
         />
 
         {rings ? (
@@ -132,12 +130,12 @@ export function SectionBackground({
 
       {/* A faded hairline that marks the start of the section, tinted to match
           its light. Same device as the Logo Cloud's, with a touch of color. */}
-      <div
+      {/* <div
         className="absolute inset-x-0 top-0 h-px"
         style={{
           background: `linear-gradient(to right, transparent, ${dividerTint}, transparent)`,
         }}
-      />
+      /> */}
     </div>
   );
 }
