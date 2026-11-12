@@ -1,6 +1,7 @@
 import { FlaskConical, Gauge, Route, Sparkles, Users } from "lucide-react";
 
 import { Container } from "@/components/layout/container";
+import { SectionBackground } from "@/components/layout/section-background";
 import { Reveal } from "@/components/ui/reveal";
 
 import { EnterpriseBand } from "./enterprise-band";
@@ -23,17 +24,7 @@ export function Features() {
       aria-labelledby="features-heading"
       className="relative isolate py-20 lg:py-28"
     >
-      {/* One faint pool of light, on the left to balance Launch Flow's on the
-          right. It fades out well inside the section, so it leaves no seam. */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10"
-        style={{
-          background:
-            "radial-gradient(ellipse 44% 36% at 22% 34%, color-mix(in srgb, var(--brand-violet) 7%, transparent), transparent 72%)",
-        }}
-      />
-
+      <SectionBackground variant="features" />
       <Container>
         <Reveal className="grid gap-6 lg:grid-cols-12 lg:items-end lg:gap-10">
           <div className="lg:col-span-7">
