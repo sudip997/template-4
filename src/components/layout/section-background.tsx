@@ -13,8 +13,10 @@ import { cn } from "@/lib/utils";
  * - `launch`: light gathers on the right, behind the glass diagram window.
  * - `features`: light starts top-left behind the heading and settles toward
  *   the bottom, behind the enterprise band.
+ * - `testimonials`: a wide pool sits behind the middle of the proof wall, with
+ *   a cooler blue glow at the top right, by the call to action.
  */
-type SectionBackgroundVariant = "launch" | "features";
+type SectionBackgroundVariant = "launch" | "features" | "testimonials";
 
 type SectionBackgroundProps = {
   variant: SectionBackgroundVariant;
@@ -81,6 +83,23 @@ const CONFIG: Record<SectionBackgroundVariant, Config> = {
       fade: "radial-gradient(circle 600px at 92% 12%, #000 0%, transparent 100%)",
     },
     dividerTint: blue(45),
+  },
+  testimonials: {
+    pools: [
+      `radial-gradient(ellipse 58% 40% at 50% 58%, ${violet(14)}, transparent 72%)`,
+      `radial-gradient(ellipse 34% 30% at 96% 8%, ${blue(12)}, transparent 72%)`,
+      `radial-gradient(ellipse 30% 26% at 4% 96%, ${violet(9)}, transparent 72%)`,
+    ].join(", "),
+    orb: {
+      // Centred behind the grid. `mx-auto` with both insets at 0 centres it
+      // without a transform, which the glow animation would otherwise replace.
+      className:
+        "inset-x-0 top-[26%] mx-auto aspect-square w-[min(88vw,880px)]",
+      background: `radial-gradient(circle, ${violet(16)} 0%, ${blue(7)} 40%, transparent 68%)`,
+      // Offset from the other two orbs so no pair pulses in step.
+      delay: "-1.75s",
+    },
+    dividerTint: violet(45),
   },
 };
 
