@@ -3,6 +3,7 @@ import { Hero } from "@/components/sections/hero/hero";
 import { LaunchFlow } from "@/components/sections/launch-flow/launch-flow";
 import { LogoCloud } from "@/components/sections/logo-cloud/logo-cloud";
 import { Navbar } from "@/components/sections/navbar/navbar";
+import { Pricing } from "@/components/sections/pricing/pricing";
 import { Testimonials } from "@/components/sections/testimonials/testimonials";
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
         <LaunchFlow />
         <Features />
         <Testimonials />
+        <Pricing />
       </main>
     </>
   );

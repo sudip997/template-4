@@ -13,10 +13,14 @@ import { cn } from "@/lib/utils";
  * - `launch`: light gathers on the right, behind the glass diagram window.
  * - `features`: light starts top-left behind the heading and settles toward
  *   the bottom, behind the enterprise band.
- * - `testimonials`: a wide pool sits behind the middle of the proof wall, with
- *   a cooler blue glow at the top right, by the call to action.
+ * - `pricing`: light gathers in the center, behind the raised middle plan,
+ *   with faint rings around it and a touch of blue in the corners.
  */
-type SectionBackgroundVariant = "launch" | "features" | "testimonials";
+type SectionBackgroundVariant =
+  | "launch"
+  | "features"
+  | "testimonials"
+  | "pricing";
 
 type SectionBackgroundProps = {
   variant: SectionBackgroundVariant;
@@ -101,6 +105,27 @@ const CONFIG: Record<SectionBackgroundVariant, Config> = {
     },
     dividerTint: violet(45),
   },
+  pricing: {
+    pools: [
+      `radial-gradient(ellipse 50% 38% at 50% 50%, ${violet(18)}, transparent 72%)`,
+      `radial-gradient(ellipse 34% 30% at 4% 90%, ${blue(11)}, transparent 72%)`,
+      `radial-gradient(ellipse 32% 26% at 98% 8%, ${blue(10)}, transparent 72%)`,
+    ].join(", "),
+    orb: {
+      // Centered with a negative margin (half the width), not a translate, so
+      // it never competes with the glow animation's transform.
+      className:
+        "top-[26%] left-1/2 -ml-[min(36vw,380px)] aspect-square w-[min(72vw,760px)]",
+      background: `radial-gradient(circle, ${violet(22)} 0%, ${blue(9)} 40%, transparent 68%)`,
+      // Offset from the other sections' orbs so none pulse in step.
+      delay: "-1.8s",
+    },
+    rings: {
+      background: `repeating-radial-gradient(circle at 50% 50%, transparent 0px, transparent 131px, ${white(4)} 131px, ${white(4)} 132px)`,
+      fade: "radial-gradient(circle 640px at 50% 50%, #000 0%, transparent 100%)",
+    },
+    dividerTint: violet(45),
+  },
 };
 
 /** Both prefixes: Safari still needs the -webkit- form for CSS masks. */
@@ -128,10 +153,10 @@ export function SectionBackground({
       <div className="absolute inset-0 overflow-hidden" style={EDGE_FADE}>
         <div className="absolute inset-0" style={{ background: pools }} />
 
-        <div
+        {/* <div
           className="absolute inset-0"
-          //   style={{ background: beam.background, ...mask(beam.fade) }}
-        />
+            style={{ background: beam.background, ...mask(beam.fade) }}
+        /> */}
 
         {rings ? (
           <div
