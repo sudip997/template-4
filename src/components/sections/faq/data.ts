@@ -140,41 +140,41 @@ export const FAQ_CATEGORIES: readonly FaqCategory[] = [
       },
     ],
   },
-  {
-    id: "security-data",
-    label: "Security and data",
-    icon: ShieldCheck,
-    items: [
-      {
-        id: "encryption",
-        question: "Where is my data stored, and is it encrypted?",
-        answer:
-          "Your data is encrypted in transit and at rest, and stored in secure cloud data centers. Enterprise customers can also choose their data region and retention period.",
-      },
-      {
-        id: "soc2",
-        question: "Is Vantora SOC 2 compliant?",
-        answer:
-          "Yes. Vantora is independently audited for SOC 2 Type II, and the report is available on request under NDA.",
-      },
-      {
-        id: "sso-roles",
-        question: "Do you support SSO and role-based access?",
-        answer:
-          "Enterprise includes SAML SSO, SCIM provisioning and granular roles at the workspace, brand and campaign level, plus a 12-month audit log of every action.",
-      },
-      {
-        id: "ai-training",
-        question: "Is my data used to train AI models?",
-        answer:
-          "No. Your campaign data powers your own planner and reports. It is never sold, and it is never used to train models for other customers.",
-      },
-      {
-        id: "export-delete",
-        question: "Can I export or delete my data?",
-        answer:
-          "Yes. Workspace admins can export campaigns, audiences and reports at any time. When you close a workspace, its data is permanently deleted within 30 days.",
-      },
-    ],
-  },
+  //   {
+  //     id: "security-data",
+  //     label: "Security and data",
+  //     icon: ShieldCheck,
+  //     items: [
+  //       {
+  //         id: "encryption",
+  //         question: "Where is my data stored, and is it encrypted?",
+  //         answer:
+  //           "Your data is encrypted in transit and at rest, and stored in secure cloud data centers. Enterprise customers can also choose their data region and retention period.",
+  //       },
+  //       {
+  //         id: "soc2",
+  //         question: "Is Vantora SOC 2 compliant?",
+  //         answer:
+  //           "Yes. Vantora is independently audited for SOC 2 Type II, and the report is available on request under NDA.",
+  //       },
+  //       {
+  //         id: "sso-roles",
+  //         question: "Do you support SSO and role-based access?",
+  //         answer:
+  //           "Enterprise includes SAML SSO, SCIM provisioning and granular roles at the workspace, brand and campaign level, plus a 12-month audit log of every action.",
+  //       },
+  //       {
+  //         id: "ai-training",
+  //         question: "Is my data used to train AI models?",
+  //         answer:
+  //           "No. Your campaign data powers your own planner and reports. It is never sold, and it is never used to train models for other customers.",
+  //       },
+  //       {
+  //         id: "export-delete",
+  //         question: "Can I export or delete my data?",
+  //         answer:
+  //           "Yes. Workspace admins can export campaigns, audiences and reports at any time. When you close a workspace, its data is permanently deleted within 30 days.",
+  //       },
+  //     ],
+  //   },
 ];
