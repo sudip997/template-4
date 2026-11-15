@@ -1,3 +1,4 @@
+import { Faq } from "@/components/sections/faq/faq";
 import { Features } from "@/components/sections/features/features";
 import { Hero } from "@/components/sections/hero/hero";
 import { LaunchFlow } from "@/components/sections/launch-flow/launch-flow";
@@ -17,6 +18,7 @@ export default function Home() {
         <Features />
         <Testimonials />
         <Pricing />
+        <Faq />
       </main>
     </>
   );

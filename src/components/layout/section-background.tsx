@@ -15,12 +15,15 @@ import { cn } from "@/lib/utils";
  *   the bottom, behind the enterprise band.
  * - `pricing`: light gathers in the center, behind the raised middle plan,
  *   with faint rings around it and a touch of blue in the corners.
+ * - `faq`: light pools low on the left, behind the category rail, with a hint
+ *   of blue at the top right so the answers stay on calm, dark ground.
  */
 type SectionBackgroundVariant =
   | "launch"
   | "features"
   | "testimonials"
-  | "pricing";
+  | "pricing"
+  | "faq";
 
 type SectionBackgroundProps = {
   variant: SectionBackgroundVariant;
@@ -125,6 +128,20 @@ const CONFIG: Record<SectionBackgroundVariant, Config> = {
       fade: "radial-gradient(circle 640px at 50% 50%, #000 0%, transparent 100%)",
     },
     dividerTint: violet(45),
+  },
+  faq: {
+    pools: [
+      `radial-gradient(ellipse 46% 36% at 20% 66%, ${violet(15)}, transparent 72%)`,
+      `radial-gradient(ellipse 34% 30% at 96% 10%, ${blue(11)}, transparent 72%)`,
+      `radial-gradient(ellipse 40% 26% at 74% 98%, ${violet(9)}, transparent 72%)`,
+    ].join(", "),
+    orb: {
+      className: "top-[28%] -left-[14%] aspect-square w-[min(72vw,700px)]",
+      background: `radial-gradient(circle, ${violet(20)} 0%, ${blue(8)} 40%, transparent 68%)`,
+      // Offset from the other sections' orbs so none pulse in step.
+      delay: "-5.2s",
+    },
+    dividerTint: blue(45),
   },
 };
 
