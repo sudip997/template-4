@@ -1,3 +1,4 @@
+import { Cta } from "@/components/sections/cta/cta";
 import { Faq } from "@/components/sections/faq/faq";
 import { Features } from "@/components/sections/features/features";
 import { Hero } from "@/components/sections/hero/hero";
@@ -19,6 +20,7 @@ export default function Home() {
         <Testimonials />
         <Pricing />
         <Faq />
+        <Cta />
       </main>
     </>
   );
