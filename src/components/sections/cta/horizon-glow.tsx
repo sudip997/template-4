@@ -11,38 +11,41 @@ function mask(image: string): CSSProperties {
   return { maskImage: image, WebkitMaskImage: image };
 }
 
-/**
- * Light fanning out from the rim of the horizon: wedges alternate violet and
- * blue and are mirrored around the vertical axis. The wedges fade out well
- * before they reach the copy, so the text always sits on calm ground.
- */
-const BEAMS = `conic-gradient(from 300deg at 50% 100%,
-  transparent 0deg, transparent 8deg,
-  ${violet(15)} 13deg, transparent 19deg,
-  transparent 27deg, ${blue(13)} 32deg, transparent 38deg,
-  transparent 50deg, ${violet(18)} 60deg, transparent 70deg,
-  transparent 82deg, ${blue(13)} 88deg, transparent 93deg,
-  transparent 101deg, ${violet(15)} 107deg, transparent 112deg,
-  transparent 360deg)`;
+/** How far the light reaches beyond the arc, in rem. The glow element is this
+ *  much larger than the disc on every side (see `-inset-[15rem]` below), so the
+ *  two values must match. */
+const REACH = 15;
 
-/** One radial mask fades the beams upward and sideways in a single layer
- *  (stacked masks would add up instead of intersecting). */
-const BEAMS_FADE = mask(
-  "radial-gradient(ellipse 72% 100% at 50% 100%, #000 0%, transparent 80%)",
+/**
+ * Light that follows the arc. The glow is a circle concentric with the disc;
+ * its brightest ring sits exactly on the disc's edge and fades outward, so the
+ * light hugs the curve instead of rising from a flat line. `closest-side` makes
+ * 100% equal the glow's radius, so `calc(100% - 15rem)` is the disc's edge.
+ */
+const CONTOUR_GLOW = `radial-gradient(circle closest-side,
+  transparent calc(100% - ${REACH + 5}rem),
+  ${violet(58)} calc(100% - ${REACH}rem),
+  ${violet(30)} calc(100% - ${REACH - 3}rem),
+  ${blue(16)} calc(100% - ${REACH - 7}rem),
+  ${blue(6)} calc(100% - ${REACH - 11}rem),
+  transparent 100%)`;
+
+/** Strongest at the apex, fading toward the sides where the arc leaves the
+ *  panel. Applied to the glow so the light has a natural hot spot. */
+const CONTOUR_FADE = mask(
+  "linear-gradient(to right, transparent 20%, #000 40%, #000 60%, transparent 80%)",
 );
 
-/** Soft pool of light that sits right above the rim. */
-const RIM_GLOW = [
-  `radial-gradient(ellipse 52% 100% at 50% 100%, ${violet(46)} 0%, ${violet(20)} 34%, transparent 72%)`,
-  `radial-gradient(ellipse 78% 100% at 50% 100%, ${blue(20)} 0%, transparent 70%)`,
-].join(", ");
+/** A small, soft hot spot centered on the apex. It fades to nothing at every
+ *  edge of its box (`closest-side`), so it never shows a straight cutoff. */
+const APEX_GLOW = `radial-gradient(ellipse closest-side, ${violet(48)} 0%, ${violet(18)} 50%, transparent 100%)`;
 
-/** The lit edge of the horizon: bright at the apex, tapering to nothing. It is
- *  revealed as a thin crescent between the outer and inner disc below. */
-const RIM_LIGHT = `linear-gradient(90deg, transparent 10%, ${blue(75)} 30%, color-mix(in srgb, var(--brand-violet) 45%, white) 50%, ${blue(75)} 70%, transparent 90%)`;
+/** The lit edge of the arc: bright at the apex, tapering to nothing. It shows
+ *  as a thin crescent between the rim and the inner disc below. */
+const RIM_LIGHT = `linear-gradient(90deg, transparent 6%, ${blue(75)} 28%, color-mix(in srgb, var(--brand-violet) 40%, white) 50%, ${blue(75)} 72%, transparent 94%)`;
 
 /** The disc's upper face catches a little of the glow, then falls to midnight. */
-const DISC_FACE = `linear-gradient(180deg, ${violet(16)} 0%, transparent 7%), var(--midnight)`;
+const DISC_FACE = `linear-gradient(180deg, ${violet(14)} 0%, transparent 6%), var(--midnight)`;
 
 /** Fine grain from an inline SVG: no extra request and no dependency. White
  *  noise at a very low opacity, concentrated around the glow. */
@@ -54,39 +57,46 @@ const NOISE_FADE = mask(
 
 /**
  * Decorative "horizon glow" for the CTA panel: a dark disc rising from the
- * bottom edge like the rim of a planet, lit along its top edge, with a pool of
- * light and soft beams above it. Pure gradients and a faint grain; no blur
- * filters. Place it as the first child of a `relative isolate overflow-hidden`
- * panel; it paints behind the panel's content.
+ * bottom edge like the rim of a planet, lit along its top edge, with light that
+ * follows the curve of the arc. No rays, no flat edges: every layer is a
+ * circle or fades to nothing at its own boundary. Pure gradients and a faint
+ * grain; no blur filters. Place it as the first child of a
+ * `relative isolate overflow-hidden` panel; it paints behind the content.
  *
- * The rim offset (how far the disc rises) is repeated for the glow so the two
- * stay aligned at every breakpoint: 6.5rem, 8rem, 9rem.
+ * The rim offset (how far the disc rises) is 6.5rem, 8rem and 9rem; the apex
+ * glow repeats it so the two stay aligned at every breakpoint.
  */
 export function HorizonGlow() {
   return (
-    <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 -z-10"
+    >
       <div
         className="absolute inset-0 opacity-[0.06]"
         style={{ backgroundImage: NOISE, ...NOISE_FADE }}
       />
 
+      {/* Breathes slowly; reduced motion switches the animation off globally.
+          Its box is centered on the apex (half of its 14rem height above the
+          rim offset), so the lower half is simply hidden by the disc. */}
       <div
-        className="absolute inset-0 hidden sm:block"
-        style={{ background: BEAMS, ...BEAMS_FADE }}
+        className="animate-glow absolute inset-x-0 bottom-[calc(6.5rem-7rem)] mx-auto h-56 w-[72%] max-w-3xl sm:bottom-[calc(8rem-7rem)] lg:bottom-[calc(9rem-7rem)]"
+        style={{ background: APEX_GLOW }}
       />
 
-      {/* Breathes slowly; reduced motion switches the animation off globally. */}
-      <div
-        className="animate-glow absolute inset-x-0 bottom-[6.5rem] h-[85%] origin-bottom sm:bottom-32 lg:bottom-36"
-        style={{ background: RIM_GLOW }}
-      />
-
-      {/* The disc: the outer circle's gradient shows through as a thin rim of
-          light because the inner circle is nudged down by 2px. */}
-      <div
-        className="absolute left-1/2 top-[calc(100%-6.5rem)] aspect-square w-[190%] -translate-x-1/2 rounded-full sm:top-[calc(100%-8rem)] sm:w-[150%] lg:top-[calc(100%-9rem)] lg:w-[125%]"
-        style={{ background: RIM_LIGHT }}
-      >
+      {/* The disc. Three stacked circles share one box: the glow (larger than
+          the disc on every side), the rim light, and the disc face, which is
+          nudged down 2px so the rim shows as a thin crescent at the top. */}
+      <div className="absolute left-1/2 top-[calc(100%-6.5rem)] aspect-square w-[190%] -translate-x-1/2 sm:top-[calc(100%-8rem)] sm:w-[150%] lg:top-[calc(100%-9rem)] lg:w-[125%]">
+        <div
+          className="absolute -inset-[15rem] rounded-full"
+          style={{ background: CONTOUR_GLOW, ...CONTOUR_FADE }}
+        />
+        <div
+          className="absolute inset-0 rounded-full"
+          style={{ background: RIM_LIGHT }}
+        />
         <div
           className="absolute inset-0 translate-y-[2px] rounded-full"
           style={{ background: DISC_FACE }}
