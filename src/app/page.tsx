@@ -1,6 +1,7 @@
 import { Cta } from "@/components/sections/cta/cta";
 import { Faq } from "@/components/sections/faq/faq";
 import { Features } from "@/components/sections/features/features";
+import { Footer } from "@/components/sections/footer/footer";
 import { Hero } from "@/components/sections/hero/hero";
 import { LaunchFlow } from "@/components/sections/launch-flow/launch-flow";
 import { LogoCloud } from "@/components/sections/logo-cloud/logo-cloud";
@@ -22,6 +23,7 @@ export default function Home() {
         <Faq />
         <Cta />
       </main>
+      <Footer />
     </>
   );
 }

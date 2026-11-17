@@ -19,6 +19,9 @@ import { cn } from "@/lib/utils";
  *   of blue at the top right so the answers stay on calm, dark ground.
  * - `cta`: a faint pool of light low and central, under the CTA panel's own
  *   horizon glow, with a hint of blue in the top corners.
+ * - `footer`: a pool of violet light low and central, behind the oversized
+ *   wordmark, with a hint of blue at the top right and a faint violet wash on
+ *   the left edge. Quieter than the CTA above it.
  */
 type SectionBackgroundVariant =
   | "launch"
@@ -26,7 +29,8 @@ type SectionBackgroundVariant =
   | "testimonials"
   | "pricing"
   | "faq"
-  | "cta";
+  | "cta"
+  | "footer";
 
 type SectionBackgroundProps = {
   variant: SectionBackgroundVariant;
@@ -163,6 +167,23 @@ const CONFIG: Record<SectionBackgroundVariant, Config> = {
       delay: "-2.6s",
     },
     dividerTint: violet(45),
+  },
+  footer: {
+    pools: [
+      `radial-gradient(ellipse 60% 38% at 50% 84%, ${violet(16)}, transparent 72%)`,
+      `radial-gradient(ellipse 34% 30% at 96% 8%, ${blue(10)}, transparent 72%)`,
+      `radial-gradient(ellipse 30% 34% at 2% 42%, ${violet(8)}, transparent 72%)`,
+    ].join(", "),
+    orb: {
+      // Centred behind the wordmark. `mx-auto` with both insets at 0 centres it
+      // without a transform, which the glow animation would otherwise replace.
+      className:
+        "inset-x-0 -bottom-[14%] mx-auto aspect-square w-[min(92vw,920px)]",
+      background: `radial-gradient(circle, ${violet(15)} 0%, ${blue(7)} 40%, transparent 68%)`,
+      // Offset from the other sections' orbs so none pulse in step.
+      delay: "-4.1s",
+    },
+    dividerTint: blue(45),
   },
 };
 
