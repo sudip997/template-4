@@ -166,7 +166,8 @@ function PlanListRow({ row, index }: { row: PlanRow; index: number }) {
           {row.channel}
         </p>
         <p className="truncate text-xs leading-5 text-muted-foreground">
-          {row.action} · {row.slot}
+          {row.action}
+          <span className="max-sm:hidden"> · {row.slot}</span>
         </p>
       </div>
       <motion.span
