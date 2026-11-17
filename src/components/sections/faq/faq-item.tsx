@@ -96,7 +96,7 @@ export function FaqItem({ item, open, onToggle, idPrefix }: FaqItemProps) {
             }}
             className="overflow-hidden"
           >
-            <p className="max-w-[60ch] px-5 pr-14 pb-5 text-[15px] leading-relaxed text-pretty text-muted-foreground sm:px-6 sm:pr-16 sm:pb-6">
+            <p className="max-w-[60ch] px-5 pb-5 text-[15px] leading-relaxed text-pretty text-muted-foreground sm:px-6 sm:pr-16 sm:pb-6">
               {item.answer}
             </p>
           </motion.div>
