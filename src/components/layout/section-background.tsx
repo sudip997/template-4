@@ -149,8 +149,8 @@ const CONFIG: Record<SectionBackgroundVariant, Config> = {
   cta: {
     pools: [
       `radial-gradient(ellipse 54% 36% at 50% 82%, ${violet(14)}, transparent 72%)`,
-      `radial-gradient(ellipse 34% 28% at 4% 8%, ${blue(10)}, transparent 72%)`,
-      `radial-gradient(ellipse 32% 26% at 98% 14%, ${blue(9)}, transparent 72%)`,
+      `radial-gradient(ellipse 34% 28% at 4% 68%, ${blue(10)}, transparent 72%)`,
+      `radial-gradient(ellipse 32% 26% at 98% 24%, ${blue(9)}, transparent 72%)`,
     ].join(", "),
     orb: {
       // Centred behind the panel's lower half. `mx-auto` with both insets at 0
