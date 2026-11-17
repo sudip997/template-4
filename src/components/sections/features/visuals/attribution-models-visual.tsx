@@ -110,7 +110,7 @@ export function AttributionModelsVisual() {
             ready ? "opacity-100" : "opacity-0",
           )}
         >
-          <p className="flex items-center justify-between gap-3 text-xs text-muted-foreground">
+          <p className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 text-xs text-muted-foreground">
             <span>Credit per touch</span>
             <span className="flex items-center gap-1" aria-hidden="true">
               First touch

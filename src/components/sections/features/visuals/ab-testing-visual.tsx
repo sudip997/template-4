@@ -246,7 +246,7 @@ export function AbTestingVisual() {
             <p className="text-[13px] leading-5 font-medium text-foreground">
               Subject line test
             </p>
-            <p className="truncate text-xs leading-5 text-muted-foreground">
+            <p className="text-xs leading-5 text-muted-foreground sm:truncate">
               Aurora launch email · open rate
             </p>
           </div>

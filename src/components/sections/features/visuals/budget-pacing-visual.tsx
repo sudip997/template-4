@@ -295,7 +295,7 @@ export function BudgetPacingVisual() {
             <p className="text-[13px] leading-5 font-medium text-foreground">
               Budget pacing
             </p>
-            <p className="truncate text-xs leading-5 text-muted-foreground">
+            <p className="text-xs leading-5 text-muted-foreground sm:truncate">
               Day {DAY} of {DAYS_IN_MONTH} · {formatMoney(TOTAL_SPENT)} of{" "}
               {formatMoney(TOTAL_BUDGET)} spent
             </p>

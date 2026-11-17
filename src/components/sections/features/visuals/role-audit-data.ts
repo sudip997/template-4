@@ -44,7 +44,7 @@ export const ACTIONS: readonly Action[] = [
   },
   {
     id: "approve",
-    label: "Approve for publish",
+    label: "Approve content",
     icon: BadgeCheck,
     done: "approved the Aurora launch email",
   },
@@ -94,7 +94,7 @@ export type AuditEntry = {
 };
 
 /** How many entries the log shows. Older ones drop off the bottom. */
-export const MAX_ENTRIES = 5;
+export const MAX_ENTRIES = 4;
 
 /** What the log already holds when the card first appears, newest first. */
 export const SEED_ENTRIES: readonly AuditEntry[] = [
@@ -125,12 +125,5 @@ export const SEED_ENTRIES: readonly AuditEntry[] = [
     initials: "AS",
     text: "opened the Q4 report",
     meta: "Viewer · 41m ago",
-  },
-  {
-    id: 1,
-    actor: "Noah Kim",
-    initials: "NK",
-    text: "edited the Aurora launch email",
-    meta: "Editor · 1h ago",
   },
 ];

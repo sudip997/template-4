@@ -54,7 +54,7 @@ export function RoleAuditVisual() {
 
   const [roleId, setRoleId] = useState<RoleId>(DEFAULT_ROLE);
   const [entries, setEntries] = useState<readonly AuditEntry[]>(SEED_ENTRIES);
-  const nextId = useRef(SEED_ENTRIES.length + 1);
+  const nextId = useRef(Math.max(...SEED_ENTRIES.map((entry) => entry.id)) + 1);
 
   const role = ROLES.find((item) => item.id === roleId) ?? ROLES[0];
 
@@ -130,7 +130,7 @@ export function RoleAuditVisual() {
           <legend className="mb-2 text-xs text-muted-foreground">
             Preview as
           </legend>
-          <div className="grid grid-cols-4 gap-1 rounded-lg border border-white/10 bg-background/50 p-1">
+          <div className="grid grid-cols-2 gap-1 rounded-lg border border-white/10 bg-background/50 p-1 min-[420px]:grid-cols-4 md:grid-cols-2 min-[900px]:grid-cols-4">
             {ROLES.map((item) => {
               const selected = item.id === roleId;
               return (
@@ -145,7 +145,7 @@ export function RoleAuditVisual() {
                   />
                   <span
                     className={cn(
-                      "relative block rounded-md px-1 py-1.5 text-center text-xs font-medium transition-colors duration-200 peer-focus-visible:ring-2 peer-focus-visible:ring-ring motion-reduce:transition-none",
+                      "relative block rounded-md px-1 py-2 text-center text-xs min-[420px]:py-1.5 font-medium transition-colors duration-200 peer-focus-visible:ring-2 peer-focus-visible:ring-ring motion-reduce:transition-none",
                       selected
                         ? "text-foreground"
                         : "text-muted-foreground hover:text-foreground",
@@ -218,7 +218,8 @@ export function RoleAuditVisual() {
                         strokeWidth={2.2}
                         aria-hidden="true"
                       />
-                      Needs {needs.label}
+                      <span className="max-sm:hidden">Needs</span>
+                      {needs.label}
                     </span>
                   )}
                 </button>
@@ -250,7 +251,7 @@ export function RoleAuditVisual() {
 
         {/* A log region, so each new entry is announced once to screen readers. */}
         <div role="log" aria-label="Audit log" className="mt-3">
-          <ul className="relative h-[16.25rem] overflow-hidden">
+          <ul className="relative h-[16rem] overflow-hidden">
             <AnimatePresence initial={false} mode="popLayout">
               {entries.map((entry) => (
                 <motion.li
@@ -260,7 +261,7 @@ export function RoleAuditVisual() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
                   transition={reduceMotion ? { duration: 0 } : ENTRY_SPRING}
-                  className="flex h-[3.25rem] items-center gap-2.5 border-b border-white/[0.06] last:border-b-0"
+                  className="flex h-16 items-center gap-2.5 border-b border-white/[0.06] last:border-b-0"
                 >
                   <span
                     aria-hidden="true"
@@ -278,7 +279,7 @@ export function RoleAuditVisual() {
                     )}
                   </span>
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-[13px] leading-5 text-muted-foreground">
+                    <p className="line-clamp-2 text-[13px] leading-5 text-muted-foreground">
                       <span className="font-medium text-foreground">
                         {entry.actor}
                       </span>{" "}
