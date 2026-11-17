@@ -50,8 +50,10 @@ export function FaqExplorer({ aside }: FaqExplorerProps) {
   };
 
   return (
-    <div className="grid gap-6 lg:grid-cols-12 lg:grid-rows-[auto_1fr] lg:gap-x-12 lg:gap-y-6">
-      <div className="lg:col-span-4 lg:col-start-1 lg:row-start-1">
+    // `grid-cols-1` is `minmax(0, 1fr)`: without it the implicit column is
+    // `auto`, and the non-wrapping tab row would stretch it wider than a phone.
+    <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:grid-rows-[auto_1fr] lg:gap-x-12 lg:gap-y-6">
+      <div className="min-w-0 lg:col-span-4 lg:col-start-1 lg:row-start-1">
         <FaqCategoryTabs
           categories={FAQ_CATEGORIES}
           activeId={activeCategory.id}
@@ -64,14 +66,14 @@ export function FaqExplorer({ aside }: FaqExplorerProps) {
         role="tabpanel"
         id={panelId(idPrefix)}
         aria-labelledby={tabId(idPrefix, activeCategory.id)}
-        className="lg:col-span-8 lg:col-start-5 lg:row-span-2 lg:row-start-1 lg:min-h-[32rem]"
+        className="min-w-0 lg:col-span-8 lg:col-start-5 lg:row-span-2 lg:row-start-1 lg:min-h-[32rem]"
       >
         <motion.ul
           key={activeCategory.id}
           initial={crossfade && !reduceMotion ? { opacity: 0, y: 8 } : false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-          className="grid gap-3"
+          className="grid grid-cols-1 gap-3"
         >
           {activeCategory.items.map((item) => (
             <li key={item.id}>
@@ -88,7 +90,7 @@ export function FaqExplorer({ aside }: FaqExplorerProps) {
         </motion.ul>
       </div>
 
-      <div className="lg:col-span-4 lg:col-start-1 lg:row-start-2 lg:self-start">
+      <div className="min-w-0 lg:col-span-4 lg:col-start-1 lg:row-start-2 lg:self-start">
         {aside}
       </div>
     </div>
