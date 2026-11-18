@@ -195,7 +195,7 @@ export function FooterNewsletter() {
                 readOnly={submitting}
                 aria-invalid={error ? true : undefined}
                 aria-describedby={error ? errorId : undefined}
-                className="h-10 min-w-0 flex-1 rounded-lg border border-white/10 bg-background/70 px-3.5 text-sm text-foreground outline-none transition-[border-color,box-shadow] duration-200 placeholder:text-muted-foreground hover:border-white/20 focus-visible:border-brand-violet/60 focus-visible:ring-2 focus-visible:ring-ring/50 aria-invalid:border-destructive/70 aria-invalid:focus-visible:ring-destructive/30 motion-reduce:transition-none"
+                className="h-10 min-w-0 sm:flex-1 rounded-lg border border-white/10 bg-background/70 px-3.5 text-sm text-foreground outline-none transition-[border-color,box-shadow] duration-200 placeholder:text-muted-foreground hover:border-white/20 focus-visible:border-brand-violet/60 focus-visible:ring-2 focus-visible:ring-ring/50 aria-invalid:border-destructive/70 aria-invalid:focus-visible:ring-destructive/30 motion-reduce:transition-none"
               />
               <button
                 type="submit"
