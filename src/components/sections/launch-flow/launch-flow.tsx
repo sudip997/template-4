@@ -14,7 +14,10 @@ export function LaunchFlow() {
     <section
       id="launch-flow"
       aria-labelledby="launch-flow-heading"
-      className="relative isolate py-20 lg:py-28"
+      // The glow behind the diagram panel (see Stage) spills 8% past the panel
+      // on each side, which is wider than the page gutter on phones. `clip`
+      // cuts it at the viewport edge without making this a scroll container.
+      className="relative isolate overflow-x-clip py-20 lg:py-28"
     >
       <SectionBackground variant="launch" />
       <Container>
