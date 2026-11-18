@@ -64,14 +64,6 @@ export function FaqCategoryTabs({
 
     const element = tabRefs.current[next.id];
     element?.focus({ preventScroll: true });
-    // In the horizontal row, keep the active pill in view.
-    if (!isDesktop) {
-      element?.scrollIntoView({
-        block: "nearest",
-        inline: "center",
-        behavior: reduceMotion ? "auto" : "smooth",
-      });
-    }
   };
 
   const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
@@ -107,7 +99,7 @@ export function FaqCategoryTabs({
       aria-label="FAQ categories"
       aria-orientation={isDesktop ? "vertical" : "horizontal"}
       onKeyDown={handleKeyDown}
-      className="-mx-5 flex gap-2 overflow-x-auto px-5 py-1.5 [scrollbar-width:none] sm:-mx-8 sm:px-8 lg:mx-0 lg:flex-col lg:gap-1.5 lg:overflow-visible lg:px-0 lg:py-0 [&::-webkit-scrollbar]:hidden"
+      className="grid grid-cols-2 gap-2 md:grid-cols-4 lg:flex lg:flex-col lg:gap-1.5"
     >
       {categories.map((category, index) => {
         const selected = category.id === activeId;
@@ -127,7 +119,7 @@ export function FaqCategoryTabs({
             tabIndex={selected ? 0 : -1}
             onClick={() => activate(index)}
             className={cn(
-              "group relative flex shrink-0 items-center gap-2.5 rounded-xl border border-white/10 bg-card/50 py-1.5 pr-4 pl-1.5 text-left text-sm font-medium whitespace-nowrap outline-none transition-colors duration-200 select-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background motion-reduce:transition-none lg:w-full lg:gap-3.5 lg:border-transparent lg:bg-transparent lg:py-2.5 lg:pr-4 lg:pl-2.5",
+              "group relative flex min-h-12 min-w-0 items-center gap-2 rounded-xl border border-white/10 bg-card/50 py-1.5 pr-2.5 pl-1.5 text-left text-sm font-medium outline-none sm:gap-2.5 sm:pr-3 lg:min-h-0 transition-colors duration-200 select-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background motion-reduce:transition-none lg:w-full lg:gap-3.5 lg:border-transparent lg:bg-transparent lg:py-2.5 lg:pr-4 lg:pl-2.5",
               selected
                 ? "text-foreground"
                 : "text-muted-foreground hover:text-foreground lg:hover:bg-white/[0.04]",
@@ -159,7 +151,9 @@ export function FaqCategoryTabs({
             </span>
 
             <span className="relative min-w-0">
-              <span className="block leading-5">{category.label}</span>
+              <span className="block leading-[1.2] text-balance lg:leading-5">
+                {category.label}
+              </span>
               <span className="hidden text-xs leading-4 font-normal text-muted-foreground lg:block">
                 {category.items.length} questions
               </span>
